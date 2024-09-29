@@ -42,6 +42,19 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    public virtual void StartGame()
+    {
+        Debug.Log(transform.name + " : StartGame");
+        //if (PhotonNetwork.IsMasterClient) PhotonNetwork.LoadLevel("2_PhotonGame");
+        //else Debug.LogWarning("You are not Master Client");
+        PhotonNetwork.LoadLevel("2_PhotonGame");
+    }
+
+
+
+
+
+
     public override void OnCreatedRoom()
     {
         Debug.Log("OnCreatedRoom");
@@ -50,6 +63,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
+        this.StartGame();
     }
 
     public override void OnLeftRoom()
