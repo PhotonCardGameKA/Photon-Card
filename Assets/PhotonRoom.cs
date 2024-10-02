@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks
 {
+
     public static PhotonRoom instance;
     public TMP_InputField input;
     public Transform roomContent;
     public UIRoomProfile roomPrefab;
     public List<RoomInfo> updatedRooms;
     public List<RoomProfile> rooms = new List<RoomProfile>();
+    public bool isAutoStartGame = false;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
     {
         if (PhotonRoom.instance != null) return;
         PhotonRoom.instance = this;
+
     }
 
     public virtual void Create()
@@ -38,15 +41,33 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
     }
     public virtual void Leave()
     {
-        Debug.Log(transform.name + ": LeaveRoom");
-        PhotonNetwork.LeaveRoom();
+
+        if (PhotonNetwork.InRoom)
+        {
+            Debug.Log(transform.name + ": Leaving Room...");
+            PhotonNetwork.LeaveRoom();
+        }
+        else
+        {
+            Debug.Log(transform.name + ": Not in a room, cannot leave.");
+        }
     }
 
+    public virtual void IsAutoStartGame()
+    {
+        if (this.isAutoStartGame) this.isAutoStartGame = false;
+        else this.isAutoStartGame = true;
+    }
+    public virtual void OnClickStartGame()
+    {
+
+        if (PhotonNetwork.IsMasterClient) this.StartGame();
+        else Debug.LogWarning("You are not Master Client");
+
+    }
     public virtual void StartGame()
     {
         Debug.Log(transform.name + " : StartGame");
-        //if (PhotonNetwork.IsMasterClient) PhotonNetwork.LoadLevel("2_PhotonGame");
-        //else Debug.LogWarning("You are not Master Client");
         PhotonNetwork.LoadLevel("2_PhotonGame");
     }
 
@@ -63,7 +84,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
-        this.StartGame();
+        if (this.isAutoStartGame)
+            this.StartGame();
     }
 
     public override void OnLeftRoom()

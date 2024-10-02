@@ -5,15 +5,22 @@ using TMPro;
 public class PhotonLogin : MonoBehaviourPunCallbacks
 {
     public TMP_InputField inputUsername;
+    public string nickName;
 
     void Start()
     {
-        this.inputUsername.text = "an";
+        this.nickName = "an";
+        this.inputUsername.text = this.nickName;
+    }
+
+    public virtual void OnChangeName()
+    {
+        this.nickName = this.inputUsername.text;
     }
 
     public virtual void Login()
     {
-        string name = inputUsername.text;
+        string name = this.nickName;
         Debug.Log(transform.name + ": Login " + name);
 
         PhotonNetwork.AutomaticallySyncScene = true;
