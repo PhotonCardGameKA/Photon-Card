@@ -1,8 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Experimental.RestService;
 using UnityEngine;
 
 public class PhotonPlaying : MonoBehaviourPunCallbacks

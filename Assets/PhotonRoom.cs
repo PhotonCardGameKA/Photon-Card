@@ -14,10 +14,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks
     public List<RoomInfo> updatedRooms;
     public List<RoomProfile> rooms = new List<RoomProfile>();
     public bool isAutoStartGame = false;
+    [SerializeField] protected string playerName;
 
     private void Start()
     {
         this.input.text = "Room1";
+        playerName = PhotonNetwork.LocalPlayer.NickName;
     }
     void Awake()
     {

@@ -24,8 +24,11 @@ public class PhotonLogin : MonoBehaviourPunCallbacks
         Debug.Log(transform.name + ": Login " + name);
 
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.LocalPlayer.NickName = name;
+
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.LocalPlayer.NickName = name;
+        PhotonNetwork.NickName = name;
+
     }
 
     public override void OnConnectedToMaster()
