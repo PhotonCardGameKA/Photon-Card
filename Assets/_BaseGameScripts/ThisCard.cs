@@ -23,6 +23,7 @@ public class ThisCard : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public Image thisImage;
 
+    public Image frameColor;
     void Start()
     {
         thisCard[0] = CardDatabase.cardList[thisId];
@@ -42,6 +43,7 @@ public class ThisCard : MonoBehaviour
         powerText.text = "" + power;
         descriptionText.text = "" + cardDescription;
         thisImage.sprite = cardImage;
+
     }
 
 }

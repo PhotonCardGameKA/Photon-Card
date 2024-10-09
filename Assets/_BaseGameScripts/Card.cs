@@ -10,11 +10,12 @@ public class Card
     public int power;
     public string cardDescription;
     public Sprite thisImage;
+    public string color;
     public Card()
     {
 
     }
-    public Card(int Id, string CardName, int Cost, int Power, string CardDescription, Sprite image)
+    public Card(int Id, string CardName, int Cost, int Power, string CardDescription, Sprite image, string Color)
     {
         id = Id;
         cardName = CardName;
@@ -22,6 +23,7 @@ public class Card
         power = Power;
         cardDescription = CardDescription;
         thisImage = image;
+        color = Color;
     }
     public Card(Card card)
     {
