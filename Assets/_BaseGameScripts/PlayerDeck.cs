@@ -16,4 +16,8 @@ public class PlayerDeck : MonoBehaviour
             deck[i] = CardDatabase.cardList[randomTest];
         }
     }
+    protected virtual void Shuffle()
+    {
+        
+    }
 }
