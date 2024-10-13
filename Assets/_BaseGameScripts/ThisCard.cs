@@ -26,13 +26,47 @@ public class ThisCard : MonoBehaviour
     public Image frameColor;
     public bool cardBack;
     public static bool staticCardBack;
+
+    public GameObject hand;
+    public int numberOfCardsInDecks;
     void Start()
     {
-        thisCard[0] = CardDatabase.cardList[thisId];
+        //thisCard[0] = CardDatabase.cardList[thisId];
+        // numberOfCardsInDecks = PlayerDeck.deckSize;
     }
-
-    void FixedUpdate()
+    void FrameColor()
     {
+        if (thisCard[0].color == "Green")
+        {
+            return;
+        }
+        if (thisCard[0].color == "Red")
+        {
+            frameColor.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+        }
+        else
+        if (thisCard[0].color == "Blue")
+        {
+            frameColor.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+        }
+        else if
+        (thisCard[0].color == "Yellow")
+        {
+            frameColor.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
+        }
+        else if
+        (thisCard[0].color == "Purple")
+        {
+            frameColor.GetComponent<Image>().color = new Color32(255, 0, 255, 255);
+        }
+    }
+    void SetInformation()
+    {
+        hand = GameObject.Find("Hand");
+        if (this.transform.parent == hand.transform.parent)
+        {
+            cardBack = false;
+        }
         id = thisCard[0].id;
         cost = thisCard[0].cost;
         power = thisCard[0].power;
@@ -47,6 +81,22 @@ public class ThisCard : MonoBehaviour
         thisImage.sprite = cardImage;
 
         staticCardBack = cardBack;
-    }
+        FrameColor();
 
+
+    }
+    void Awake()
+    {
+        numberOfCardsInDecks = PlayerDeck.deckSize;
+        this.SetInformation();
+        thisCard[0] = PlayerDeck.staticDeck[numberOfCardsInDecks - 1];
+        numberOfCardsInDecks--;
+        PlayerDeck.deckSize--;
+        cardBack = false;
+
+    }
+    void FixedUpdate()
+    {
+        this.SetInformation();
+    }
 }

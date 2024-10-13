@@ -16,6 +16,6 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(3, "test", 1, 2, "this is card 3", temp, "Green"));
         cardList.Add(new Card(4, "test", 1, 2, "this is card 4", temp, "Yellow"));
         cardList.Add(new Card(5, "test", 1, 2, "this is card 5", temp, "Purple"));
-        cardList.Add(new Card(6, "test", 1, 2, "this is card 6", temp, "pink"));
+        cardList.Add(new Card(6, "test", 1, 2, "this is card 6", temp, "Pink"));
     }
 }
