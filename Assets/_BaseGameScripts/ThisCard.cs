@@ -24,6 +24,8 @@ public class ThisCard : MonoBehaviour
     public Image thisImage;
 
     public Image frameColor;
+    public bool cardBack;
+    public static bool staticCardBack;
     void Start()
     {
         thisCard[0] = CardDatabase.cardList[thisId];
@@ -44,6 +46,7 @@ public class ThisCard : MonoBehaviour
         descriptionText.text = "" + cardDescription;
         thisImage.sprite = cardImage;
 
+        staticCardBack = cardBack;
     }
 
 }
