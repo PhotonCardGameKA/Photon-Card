@@ -10,7 +10,6 @@ public class CardDatabase : MonoBehaviour
     void Awake()
     {
         Sprite temp = Resources.Load<Sprite>("CardBack");
-        Card card = new Card(0, "test", 1, 2, "this is card", temp, "None");
 
         cardList.Add(new Card(1, "test", 1, 2, "this is card 1", temp, "Red"));
         cardList.Add(new Card(2, "test", 1, 2, "this is card 2", temp, "Blue"));
