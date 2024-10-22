@@ -23,12 +23,16 @@ public class CardInHandUI : MonoBehaviour
         this.cardCost.text = card.cost.ToString();
         this.cardImage = card.image;
 
-    }
-    void Update()
-    {
         hand = GameObject.Find("PlayerHand");
 
         transform.SetParent(hand.transform);
         transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
+    //     void Update()
+    //     {
+    //         hand = GameObject.Find("PlayerHand");
+
+    //         transform.SetParent(hand.transform);
+    //         transform.localScale = new Vector3(0.8f, 0.8f, 1);
+    //     }
 }

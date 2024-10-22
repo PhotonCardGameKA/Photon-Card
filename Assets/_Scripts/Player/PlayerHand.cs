@@ -39,6 +39,9 @@ public class PlayerHand : MonoBehaviour
         temp.GetComponent<CardInHandUI>().backGround.SetActive(false);
         temp.transform.SetParent(hand.transform, false);
         this.cardUI.Add(temp);
+
+        temp.transform.SetParent(GameObject.Find("PlayerHand").transform);
+        temp.transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
     // IEnumerator StartGame()
     // {
