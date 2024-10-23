@@ -5,8 +5,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card/MinionCard")]
 public class MinionCard : _Card
 {
-    public int atk;
-    public int hp;
+    [SerializeField] public int atk;
+    [SerializeField] public int hp;
     public override void Attack()
     {
         base.Attack();
@@ -14,6 +14,10 @@ public class MinionCard : _Card
     public override void Effect()
     {
         base.Effect();
+    }
+    public bool IsDeath()
+    {
+        return true;
     }
     public MinionCard(int Id, string CardName, int Cost, int Hp, int Atk, string CardDescription, Image image, string Color)
     {

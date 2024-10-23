@@ -10,6 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerBoard playerBoard;
     public PlayerVoid playerVoid;
     public CardInHandUI cardInHandUI;
+    public PlayerMana playerMana;
     void Reset()
     {
         this.LoadComponents();
@@ -18,7 +19,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = this;
+            PlayerCtrl.instance = this;
             // DontDestroyOnLoad(gameObject);
         }
         else
@@ -34,7 +35,9 @@ public class PlayerCtrl : MonoBehaviour
         this.LoadPlayerDeck();
         this.LoadPlayerVoid();
         this.LoadCardInHandUI();
+        this.LoadPlayerMana();
     }
+
     void LoadPlayerBoard()
     {
         if (this.playerBoard != null) return;
@@ -69,5 +72,11 @@ public class PlayerCtrl : MonoBehaviour
         if (this.cardInHandUI != null) return;
         this.cardInHandUI = transform.GetComponentInChildren<CardInHandUI>();
         Debug.Log(transform.name + "LoadUICard : ", gameObject);
+    }
+    void LoadPlayerMana()
+    {
+        if (this.playerMana != null) return;
+        this.playerMana = transform.GetComponentInChildren<PlayerMana>();
+        Debug.Log(transform.name + "LoadMana : ", gameObject);
     }
 }

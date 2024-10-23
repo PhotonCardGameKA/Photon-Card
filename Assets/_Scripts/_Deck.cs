@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+//for override
 public class _Deck : MonoBehaviour
 {
-    public List<MinionCard> deck;
+    [SerializeField] public List<MinionCard> deck;
     void Awake()
     {
 

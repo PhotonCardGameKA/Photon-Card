@@ -5,16 +5,31 @@ using UnityEngine.UI;
 // [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class _Card : ScriptableObject
 {
-    public int id;
-    public string cardName;
-    public int cost;
-    public string cardDescription;
-    public Image image;
-    public string frameColor;
+    [SerializeField] public int id;
+    [SerializeField] public string cardName;
+    [SerializeField] public int cost;
+    [SerializeField] public string cardDescription;
+    [SerializeField] public Image image;
+    [SerializeField] public string frameColor;
+    public bool isPlayed = false;
+    public enum CardState
+    {
+        OnDeck,
+        OnHand,
+        OnBoard,
+        OnVoid
+    }
+    [SerializeField] public CardState cardState;
+
     public virtual void Attack()
     {
 
     }
+    // public virtual bool CanPlayCard()
+    // {
+
+
+    // }
     public virtual void Effect()
     {
 

@@ -694,7 +694,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3001960953557154353}
-  m_LocalRotation: {x: 0.21643962, y: 0, z: 0, w: 0.976296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
@@ -766,6 +766,8 @@ MonoBehaviour:
   cardAtk: {fileID: 9209586493599710022}
   cardImage: {fileID: 6787888887305531535}
   backGround: {fileID: 3275276124647591146}
+  inforCard: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!114 &7717918649745960007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,8 +780,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01d96fadfc1cf9479358ad37bc52569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handLayoutGroup: {fileID: 0}
+  parentToReturn: {fileID: 0}
+  placeHolderParent: {fileID: 0}
   canvasRaycast: {fileID: 0}
+  typeOfItem: 0
 --- !u!114 &1869253695350811221
 MonoBehaviour:
   m_ObjectHideFlags: 0

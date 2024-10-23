@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerBoard : MonoBehaviour
+public class PlayerBoard : DropZone
 {
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        this.dropSlot = 6;
+        this.dropCurrent = 0;
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void OnDrop(PointerEventData eventData)
     {
-        
+        base.OnDrop(eventData);
     }
 }

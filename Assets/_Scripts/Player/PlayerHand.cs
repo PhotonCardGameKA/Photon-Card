@@ -12,13 +12,15 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] GameObject cardPrefab;
     void Start()
     {
-
+        StartCoroutine(nameof(this.StartGame));
     }
 
     public void AddCardToHand(MinionCard card)
     {
+        this.CheckCardInHand();
         if (this.cardInHand.Count < this.maxCardInHand)
         {
+            card.cardState = _Card.CardState.OnHand;
             this.cardInHand.Add(card);
             this.CardUI(card);
         }
@@ -27,9 +29,31 @@ public class PlayerHand : MonoBehaviour
             this.DisCard(card);
         }
     }
+    protected void CheckCardInHand()
+    {
+        int cardIDToRemove = 10;
+        int size = this.cardUI.Count;
+        for (int i = 0; i < size; i++)
+        {
+            GameObject card = this.cardUI[i];
+            if (card.GetComponent<CardInHandUI>().stats.isPlayed)
+            {
+                cardIDToRemove = this.cardUI.IndexOf(card);
+                this.cardInHand.RemoveAt(cardIDToRemove);
+                this.cardUI.Remove(card);
+                size--;
+                i--;
+            }
+        }
+    }
     public void DisCard(MinionCard card)
     {
         PlayerCtrl.instance.playerVoid.voidCards.Add(card);
+        card.cardState = _Card.CardState.OnVoid;
+    }
+    public void PlayCard(int index)
+    {
+        this.cardInHand.RemoveAt(index);
     }
     protected virtual void CardUI(MinionCard card)
     {
@@ -43,18 +67,21 @@ public class PlayerHand : MonoBehaviour
         temp.transform.SetParent(GameObject.Find("PlayerHand").transform);
         temp.transform.localScale = new Vector3(0.8f, 0.8f, 1);
     }
-    // IEnumerator StartGame()
-    // {
-    //     for (int i = 0; i <= 4; i++)
-    //     {
+    IEnumerator StartGame()
 
-    //         yield return new WaitForSeconds(1);
-    //         PlayerCtrl.instance.playerDeck.Draw(1);
-    //         GameObject temp = Instantiate(cardPrefab, transform.position, transform.rotation);
-    //         temp.GetComponent<CardInHandUI>().SetInformation(cardInHand[i]);
-    //         temp.GetComponent<CardInHandUI>().backGround.SetActive(false);
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+
+            yield return new WaitForSeconds(1);
+            PlayerCtrl.instance.playerDeck.Draw(1);
+            // GameObject temp = Instantiate(cardPrefab, transform.position, transform.rotation);
+            // temp.GetComponent<CardInHandUI>().SetInformation(cardInHand[i]);
+            // temp.GetComponent<CardInHandUI>().backGround.SetActive(false);
 
 
-    //     }
-    // }
+        }
+    }
+
+
 }

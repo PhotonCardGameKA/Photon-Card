@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PlayerVoid : MonoBehaviour
 {
-    public List<_Card> voidCards;
+    [SerializeField] public List<_Card> voidCards;
 }
