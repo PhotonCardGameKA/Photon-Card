@@ -8,6 +8,18 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Transform _content;
     [SerializeField] private RoomListing _roomListing;
     private List<RoomListing> _listing = new List<RoomListing>();
+    private RoomCanvases _roomCanvases;
+    public void FirstInitialize(RoomCanvases roomCanvases)
+    {
+        _roomCanvases = roomCanvases;
+    }
+
+    public override void OnJoinedRoom()
+    {
+        _roomCanvases.CurrentRoomCanvas.Show();
+        _content.DestroyChildren();
+        _listing.Clear();
+    }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (RoomInfo room in roomList)
@@ -23,12 +35,22 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
             }
             else
             {
-                RoomListing listing = Instantiate(_roomListing, _content);
-                if (listing != null)
+                int index = _listing.FindIndex(x => x.RoomInfo.Name == room.Name);
+                if (index == -1)
                 {
-                    listing.SetRoomInfo(room);
-                    _listing.Add(listing);
+                    RoomListing listing = Instantiate(_roomListing, _content);
+                    if (listing != null)
+                    {
+                        listing.SetRoomInfo(room);
+                        _listing.Add(listing);
+                    }
                 }
+                else
+                {
+                    //modifiy listing
+
+                }
+
             }
 
         }

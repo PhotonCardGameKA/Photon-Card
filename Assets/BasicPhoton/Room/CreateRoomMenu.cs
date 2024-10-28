@@ -8,6 +8,13 @@ using UnityEngine.UI;
 public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Text _roomName;
+    private RoomCanvases roomCanvases;
+
+    public void FirstInitialize(RoomCanvases canvases)
+    {
+        roomCanvases = canvases;
+    }
+
     public void OnClick_CreateRoom()
     {
         if (!PhotonNetwork.IsConnected)
@@ -19,6 +26,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log("created room successfull", this);
+        roomCanvases.CurrentRoomCanvas.Show();
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
