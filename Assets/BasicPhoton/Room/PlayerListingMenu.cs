@@ -80,8 +80,11 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public void OnClick_StartGame()
     {
         if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel(1);
-
+        }//hide room while game starting 
     }
 
 }
