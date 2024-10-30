@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using Unity.Mathematics;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 [CreateAssetMenu(menuName = "Singletons/MasterManager")]
 public class MasterManager : SingletonScriptableObject<MasterManager>
 {
     [SerializeField] private GameSettings gameSettings;
+
     public GameSettings GameSettings => Instance.gameSettings;
+    [SerializeField]
     private List<NetworkPrefab> _networkPrefabs = new List<NetworkPrefab>();
 
     public static GameObject NetworkInstantiate(GameObject obj, Vector3 position, quaternion rotation, Transform parent)
@@ -36,8 +40,7 @@ public class MasterManager : SingletonScriptableObject<MasterManager>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void PopulateNetworkPrefabs()
     {
-        if (!Application.isEditor)
-            return;
+#if UNITY_EDITOR
 
         Instance._networkPrefabs.Clear();
         GameObject[] results = Resources.LoadAll<GameObject>("");
@@ -54,5 +57,6 @@ public class MasterManager : SingletonScriptableObject<MasterManager>
         {
             UnityEngine.Debug.Log(Instance._networkPrefabs[i].Prefab.name + "," + Instance._networkPrefabs[i].Path);
         }
+#endif
     }
 }

@@ -7,16 +7,15 @@ public class PlayerTurnManager : MonoBehaviourPunCallbacks
     private int currentTurn;
     public void OnClick_EndTurn()
     {
-        currentTurn++;
-        currentPlayerTurn = currentTurn % 2;
-        int nextPlayerID = PhotonNetwork.PlayerList[currentPlayerTurn].ActorNumber;
-        photonView.RPC(nameof(this.RPC_EndTurn), RpcTarget.All, nextPlayerID);
+        //     currentTurn++;
+        //     currentPlayerTurn = currentTurn % 2;
+        //     int nextPlayerID = PhotonNetwork.PlayerList[currentPlayerTurn].ActorNumber;
+        photonView.RPC(nameof(this.RPC_EndTurn), RpcTarget.All);
     }
     [PunRPC]
-    public void RPC_EndTurn(int nextPlayerID)
+    public void RPC_EndTurn()
     {
-
-        if (nextPlayerID == PhotonNetwork.LocalPlayer.ActorNumber)
+        if (photonView.IsMine)
         {
             StartTurn();
         }
