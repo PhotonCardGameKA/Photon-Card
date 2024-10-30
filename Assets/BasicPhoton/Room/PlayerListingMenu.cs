@@ -12,9 +12,13 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private RoomCanvases _roomCanvases;
     [SerializeField] private Text _readyUpText;
     private bool _ready = false;
+    PhotonView _photonView;
+
     private void Awake()
     {
+
         GetCurrentRoomPlayer();
+        this._photonView = GetComponent<PhotonView>();
     }
     public override void OnEnable()
     {
@@ -114,11 +118,11 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     public void OnClick_ReadyUp()
     {
+
         if (!PhotonNetwork.IsMasterClient)
         {
             SetReadyUp(!_ready);
-            base.photonView.RPC(nameof(this.RPC_ChangeReadyState), RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer, _ready);
-
+            _photonView.RPC("RPC_ChangeReadyState", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer, _ready);
         }
     }
 
