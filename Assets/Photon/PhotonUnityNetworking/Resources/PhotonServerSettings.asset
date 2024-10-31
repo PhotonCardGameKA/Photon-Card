@@ -42,6 +42,9 @@ MonoBehaviour:
   - RPC_ChangeReadyState
   - RPC_ChangeTurn
   - RPC_EndTurn
+  - ChangeButtonState
+  - ChangeTurnState
+  - RPC_Hand
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

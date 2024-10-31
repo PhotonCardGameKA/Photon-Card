@@ -1,9 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class PhotonCardUI : MonoBehaviour
 {
-    private Image cardBack;
+    [SerializeField] private GameObject cardBack;
 
+    private void HideCardBack()
+    {
+        cardBack.SetActive(false);
+    }
+    private void ShowCardBack()
+    {
+        cardBack.SetActive(true);
+    }
 
 }

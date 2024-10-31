@@ -2,5 +2,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+    private PlayerDraw playerDraw;
+    public PlayerDraw PlayerDraw => playerDraw;
+    private PlayerHandArea playerHandArea;
+    public PlayerHandArea PlayerHandArea => playerHandArea;
+    private void Awake()
+    {
+        if (PlayerController.Instance != null) return;
+        PlayerController.Instance = this;
+    }
+    private void Start()
+    {
 
+        this.LoadComponents();
+    }
+    private void LoadComponents()
+    {
+        this.LoadPlayerDraw();
+        this.LoadHandArea();
+    }
+    private void LoadPlayerDraw()
+    {
+        if (this.playerDraw != null) return;
+        playerDraw = transform.GetComponentInChildren<PlayerDraw>();
+    }
+    private void LoadHandArea()
+    {
+        if (this.playerHandArea != null) return;
+        playerHandArea = transform.parent.GetComponent<PlayerHandArea>();
+    }
 }

@@ -7,6 +7,8 @@ public class InstantiateEndTurn : MonoBehaviour
     private void Awake()
     {
         MasterManager.NetworkInstantiate(_prefab, _prefab.transform.position, transform.rotation, transform);
+
+
     }
 
 }
