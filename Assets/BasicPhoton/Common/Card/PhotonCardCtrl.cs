@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PhotonCardCtrl : MonoBehaviour
 {
-    [SerializeField] private PhotonCardUI photonCardUI;
+    [SerializeField] public PhotonCardUI photonCardUI;
+    [SerializeField] public PhotonCardProp photonCardProp;
 
     void Awake()
     {
@@ -11,10 +12,16 @@ public class PhotonCardCtrl : MonoBehaviour
     protected virtual void LoadComponents()
     {
         this.LoadCardUI();
+        this.LoadCardProp();
     }
     protected virtual void LoadCardUI()
     {
         if (this.photonCardUI != null) return;
         this.photonCardUI = GetComponentInChildren<PhotonCardUI>();
+    }
+    protected virtual void LoadCardProp()
+    {
+        if (this.photonCardProp != null) return;
+        this.photonCardProp = GetComponentInChildren<PhotonCardProp>();
     }
 }

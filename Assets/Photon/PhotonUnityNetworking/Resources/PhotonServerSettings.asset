@@ -45,6 +45,10 @@ MonoBehaviour:
   - ChangeButtonState
   - ChangeTurnState
   - RPC_Hand
+  - Die
+  - takeDamage
+  - UpdateHealthImage
+  - RPC_UpdateHealthImage
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

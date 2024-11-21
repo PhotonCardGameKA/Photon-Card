@@ -18,9 +18,6 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
             InitSetTurn(null);
         }
 
-        // changeTurnButton.onClick.AddListener(OnNextTurnButtonClicked);
-
-        // changeTurnButton.onClick.AddListener(OnNextTurnButtonClicked);
 
     }
     private void InitSetTurn(Player player)
