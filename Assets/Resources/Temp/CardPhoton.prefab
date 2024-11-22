@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photonCardUI: {fileID: 8636677392674583692}
+  photonCardProp: {fileID: 0}
 --- !u!114 &7729833979580763589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +322,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardBack: {fileID: 8920093634873469546}
+  selectedVisual: {fileID: 0}
+  hpImage: {fileID: 0}
+  atkImage: {fileID: 0}
+  photonCardCtrl: {fileID: 0}
 --- !u!1 &8920093634873469546
 GameObject:
   m_ObjectHideFlags: 0

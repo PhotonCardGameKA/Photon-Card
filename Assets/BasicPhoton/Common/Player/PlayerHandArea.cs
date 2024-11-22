@@ -5,11 +5,11 @@ public class PlayerHandArea : MonoBehaviourPunCallbacks
 {
     public GameObject yourHandPrefab;
     public GameObject yourOPHandPrefab;
-    private Transform yourHand;
+    [SerializeField] private Transform yourHand;
     public Transform PlayerArea => yourHand;
-    private void Awake()
+    private void Init()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (photonView.IsMine)
         {
             yourHand = yourHandPrefab.transform;
         }
@@ -18,5 +18,12 @@ public class PlayerHandArea : MonoBehaviourPunCallbacks
             yourHand = yourOPHandPrefab.transform;
         }
     }
-
+    void Awake()
+    {
+        Init();
+    }
+    void Reset()
+    {
+        Init();
+    }
 }

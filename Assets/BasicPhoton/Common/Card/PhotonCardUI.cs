@@ -17,13 +17,9 @@ public class PhotonCardUI : MonoBehaviourPunCallbacks
         this.photonCardCtrl = GetComponentInParent<PhotonCardCtrl>();
     }
 
-    private void HideCardBack()
+    private void ShowCardBack(bool state)
     {
-        cardBack.SetActive(false);
-    }
-    private void ShowCardBack()
-    {
-        cardBack.SetActive(true);
+        cardBack.SetActive(state);
     }
     public void ToggleSelect(bool selected)
     {

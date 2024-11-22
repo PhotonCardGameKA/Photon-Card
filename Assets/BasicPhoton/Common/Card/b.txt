@@ -1,0 +1,3 @@
+-card instantiate chua dung player.
+-chua co set cardback
+-rpc

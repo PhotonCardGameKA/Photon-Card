@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
-    private PlayerDraw playerDraw;
+    [SerializeField] private PlayerDraw playerDraw;
     public PlayerDraw PlayerDraw => playerDraw;
-    private PlayerHandArea playerHandArea;
+    [SerializeField] private PlayerHandArea playerHandArea;
     public PlayerHandArea PlayerHandArea => playerHandArea;
     private void Awake()
     {
@@ -30,6 +30,6 @@ public class PlayerController : MonoBehaviour
     private void LoadHandArea()
     {
         if (this.playerHandArea != null) return;
-        playerHandArea = transform.parent.GetComponent<PlayerHandArea>();
+        playerHandArea = transform.parent.GetComponentInChildren<PlayerHandArea>();
     }
 }
