@@ -1,26 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerDraw : MonoBehaviourPunCallbacks
 {
+    [SerializeField] PlayerController playerController;
     [SerializeField] protected GameObject cardPrefab;
-    [SerializeField] protected Transform playerArea;
-    private void Start()
+    [SerializeField] protected PlayerHandArea playerArea;
+    [SerializeField] List<GameObject> listTemp;
+    GameObject tempCard;
+
+    IEnumerator WaitForPlayerController()
     {
-        playerArea = PlayerController.Instance.PlayerHandArea.PlayerArea;
+        while (playerController == null || playerController.PlayerHandArea == null)
+        {
+            yield return null; // Chờ đến khi PlayerController và PlayerHandArea sẵn sàng
+        }
+
+        this.playerArea = playerController.PlayerHandArea;
+
+        if (this.playerArea == null)
+        {
+            Debug.LogError("PlayerHandArea is not assigned!");
+        }
     }
-    public void Draw(Player player, int numCard)
+    void Awake()
     {
+        this.playerController = GetComponentInParent<PlayerController>();
+    }
+    void Start()
+    {
+        StartCoroutine(WaitForPlayerController());
+    }
+    [PunRPC]
+    private void RPC_Draw()
+    {
+
+        GameObject card;
+        PhotonCardUI photonCardUI;
+
         Debug.Log("Draw");
-        // for (int i = 0; i < numCard; i++) break;
-        // MasterManager.NetworkInstantiate(cardPrefab, cardPrefab.transform.position, cardPrefab.transform.rotation, playerArea);
-        Transform hand = PlayerController.Instance.PlayerHandArea.transform;
-        // GameObject tempCard = PhotonNetwork.Instantiate(cardPrefab.name, hand.position, hand.rotation);
-        // tempCard.transform.SetParent(hand);
-        MasterManager.NetworkInstantiate(cardPrefab, hand.position, hand.rotation, playerArea);
+        card = MasterManager.NetworkInstantiate(cardPrefab, transform.position, transform.rotation);
+        listTemp.Add(card);
+        photonCardUI = card.GetComponentInChildren<PhotonCardUI>();
+        photonCardUI.ShowCardBack();
+
+        card.transform.SetParent(playerArea.transform, false);
+        Debug.Log("1");
+        // card.transform.SetParent(playerArea.yourOPHandPrefab.transform, false);
+        // Debug.Log("2");
+
 
     }
+    public void DrawLocal()
+    {
+        GameObject cardToDraw = Instantiate(cardPrefab);
+        cardToDraw.transform.SetParent(playerArea.yourHandPrefab.transform, false);
+        playerArea.cardholder.Add(cardToDraw);
+    }
+
 
 }

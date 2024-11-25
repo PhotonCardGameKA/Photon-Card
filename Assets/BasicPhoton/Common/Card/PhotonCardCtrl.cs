@@ -4,6 +4,7 @@ public class PhotonCardCtrl : MonoBehaviour
 {
     [SerializeField] public PhotonCardUI photonCardUI;
     [SerializeField] public PhotonCardProp photonCardProp;
+    // [SerializeField] public PhotonCardSpawner photonCardSpawner;
 
     void Awake()
     {
@@ -13,6 +14,7 @@ public class PhotonCardCtrl : MonoBehaviour
     {
         this.LoadCardUI();
         this.LoadCardProp();
+        this.LoadCardSpawner();
     }
     protected virtual void LoadCardUI()
     {
@@ -23,5 +25,10 @@ public class PhotonCardCtrl : MonoBehaviour
     {
         if (this.photonCardProp != null) return;
         this.photonCardProp = GetComponentInChildren<PhotonCardProp>();
+    }
+    protected virtual void LoadCardSpawner()
+    {
+        // if (this.photonCardSpawner != null) return;
+        // this.photonCardSpawner = GetComponentInChildren<PhotonCardSpawner>();
     }
 }

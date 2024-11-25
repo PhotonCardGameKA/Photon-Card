@@ -16,7 +16,7 @@ public class MasterManager : SingletonScriptableObject<MasterManager>
     [SerializeField]
     private List<NetworkPrefab> _networkPrefabs = new List<NetworkPrefab>();
 
-    public static GameObject NetworkInstantiate(GameObject obj, Vector3 position, quaternion rotation, Transform parent)
+    public static GameObject NetworkInstantiate(GameObject obj, Vector3 position, quaternion rotation)
     {
         foreach (NetworkPrefab networkPrefab in Instance._networkPrefabs)
         {
@@ -25,7 +25,7 @@ public class MasterManager : SingletonScriptableObject<MasterManager>
                 if (networkPrefab.Path != string.Empty)
                 {
                     GameObject result = PhotonNetwork.Instantiate(networkPrefab.Path, position, rotation);
-                    result.transform.SetParent(parent, false);
+                    // result.transform.SetParent(parent, false);
                     return result;
                 }
                 else

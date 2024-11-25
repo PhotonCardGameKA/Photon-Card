@@ -1,22 +1,17 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerHandArea : MonoBehaviourPunCallbacks
+public class PlayerHandArea : MonoBehaviour
 {
     public GameObject yourHandPrefab;
     public GameObject yourOPHandPrefab;
-    [SerializeField] private Transform yourHand;
-    public Transform PlayerArea => yourHand;
+    public List<GameObject> cardholder;
     private void Init()
     {
-        if (photonView.IsMine)
-        {
-            yourHand = yourHandPrefab.transform;
-        }
-        else
-        {
-            yourHand = yourOPHandPrefab.transform;
-        }
+        yourHandPrefab = transform.gameObject;
+        yourOPHandPrefab = GameObject.Find("EnemyArea");
+
     }
     void Awake()
     {

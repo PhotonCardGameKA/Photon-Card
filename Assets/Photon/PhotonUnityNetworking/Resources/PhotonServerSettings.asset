@@ -49,6 +49,18 @@ MonoBehaviour:
   - takeDamage
   - UpdateHealthImage
   - RPC_UpdateHealthImage
+  - SetParentRPC
+  - ShowCardBack
+  - RPC_Draw
+  - RPC_ShowCardBack
+  - RPC_ShowPlayer
+  - Draw
+  - AddPVRef
+  - SyncParent
+  - RPC_AddPVRef
+  - RPC_SyncParent
+  - SyncTurn
+  - RPC_SyncTurn
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PhotonCardProp : MonoBehaviourPunCallbacks
+public class PhotonCardProp : MonoBehaviour
 {
     [SerializeField] private PhotonCardCtrl photonCardCtrl;
 
@@ -26,23 +26,5 @@ public class PhotonCardProp : MonoBehaviourPunCallbacks
         if (!this.CanSelect()) return false;
         return true;
     }
-    [PunRPC]
-    void takeDamage(int damage)
-    {
-        currentHp -= damage;
-        if (currentHp <= 0)
-        {
-            photonView.RPC(nameof(this.Die), RpcTarget.All);
-        }
-        else
-        {
-            //update health ui
-            this.photonCardCtrl.photonCardUI.UpdateHealthImage(damage);//rpc method
-        }
-    }
-    [PunRPC]
-    void Die()
-    {
-        gameObject.SetActive(false);
-    }
+
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SystemTurnManager : MonoBehaviourPunCallbacks
 {
     public Button changeTurnButton;
+    PlayerController playerController;
     public bool isMyTurn = false;//local
     void Awake()
     {
@@ -40,16 +41,17 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2) return;
         if (isMyTurn)
         {
-            Debug.Log("P2");
+            Debug.Log("luot cua ban");
             changeTurnButton.interactable = true;
-            DrawOnChangeTurn();
+
         }
         else
         {
-            Debug.Log("P1");
+            Debug.Log("luot doi thu");
             changeTurnButton.interactable = false;
-            DrawOnChangeTurn();
+            // DrawOnChangeTurn();
         }
+        DrawOnChangeTurn();
     }
     [PunRPC]
     private void ChangeTurnState()
@@ -60,21 +62,18 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
 
     public void OnNextTurnButtonClicked()
     {
-
+        DrawOnChangeTurn();
         if (!isMyTurn) return;
         Player player = GetNextPlayer();
         if (player == null) return;
-        // Debug.Log(player.NickName + " Turn");
+
         photonView.RPC(nameof(this.ChangeTurnState), RpcTarget.All);
         photonView.RPC(nameof(this.ChangeButtonState), RpcTarget.All);
 
-        // PhotonNetwork.CurrentRoom.SetCustomProperties(new ExitGames.Client.Photon.Hashtable{
-        //     {"currentPlayerTurn", GetNextPlayer().ActorNumber}
-        // });
     }
     void DrawOnChangeTurn()
-    {
-        PlayerController.Instance.PlayerDraw.Draw(PhotonNetwork.LocalPlayer, 1);
+    {//draw
+        GameManager.Instance.photonView.RPC("RPC_SyncTurn", RpcTarget.All, isMyTurn);
     }
     private Player GetNextPlayer()
     {

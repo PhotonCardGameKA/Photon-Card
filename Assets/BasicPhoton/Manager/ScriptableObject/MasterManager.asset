@@ -13,3 +13,22 @@ MonoBehaviour:
   m_Name: MasterManager
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: 5d02f2c7556aa534ab3c67f5eec3cfa1, type: 2}
+  _networkPrefabs:
+  - Prefab: {fileID: 140850, guid: 15f43343ba0a60e47a63d28496373c3f, type: 3}
+    Path: BigAsteroid
+  - Prefab: {fileID: 100030, guid: fe764102aa5aa431795da15fa2dec0e2, type: 3}
+    Path: My Robot Kyle -done-
+  - Prefab: {fileID: 4923066053481051451, guid: 9af121b52ac84f442b58828417023c2e, type: 3}
+    Path: PhotonPlayer
+  - Prefab: {fileID: 174002, guid: c9248d8e58293473bb27cf2f5505f88b, type: 3}
+    Path: Player Controller
+  - Prefab: {fileID: 151774, guid: 18a79aea49b60d342b7a672b7a34edbe, type: 3}
+    Path: SmallAsteroid
+  - Prefab: {fileID: 178952, guid: 775dd0a15ad25a544b33ad40ef0da1f0, type: 3}
+    Path: Spaceship
+  - Prefab: {fileID: 345696786660053201, guid: 60f66da49fbff9d4089da10dd3a2351c, type: 3}
+    Path: Temp/CardPhotonPreb2
+  - Prefab: {fileID: 2188512153196435996, guid: 1d794aeb24d57b3438a95e0dd3986fea, type: 3}
+    Path: Temp/EndTurn
+  - Prefab: {fileID: 6547747031606783280, guid: a9af448d834c3c04b8deefa2bb448592, type: 3}
+    Path: Temp/Square

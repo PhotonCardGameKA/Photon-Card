@@ -1553,7 +1553,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 5
+  sceneViewId: 6
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1192671596
@@ -2905,7 +2905,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 562570376}
   m_HandleRect: {fileID: 562570375}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

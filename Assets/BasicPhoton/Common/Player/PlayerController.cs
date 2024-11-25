@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance;
+    //public static PlayerController Instance;
     [SerializeField] private PlayerDraw playerDraw;
     public PlayerDraw PlayerDraw => playerDraw;
     [SerializeField] private PlayerHandArea playerHandArea;
     public PlayerHandArea PlayerHandArea => playerHandArea;
     private void Awake()
     {
-        if (PlayerController.Instance != null) return;
-        PlayerController.Instance = this;
+
     }
     private void Start()
     {
@@ -30,6 +29,6 @@ public class PlayerController : MonoBehaviour
     private void LoadHandArea()
     {
         if (this.playerHandArea != null) return;
-        playerHandArea = transform.parent.GetComponentInChildren<PlayerHandArea>();
+        playerHandArea = transform.GetComponentInChildren<PlayerHandArea>();
     }
 }
