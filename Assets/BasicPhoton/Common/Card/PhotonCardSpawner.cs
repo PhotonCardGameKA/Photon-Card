@@ -12,8 +12,8 @@ public class PhotonCardSpawner : MonoBehaviourPun//spam in enemy side
     }
     public void EnemyCardUISide()
     {
-        GameObject card = Instantiate(cardPrefab);
-        card.GetComponent<PhotonCardUI>().UnHideCardBack();
-        card.transform.SetParent(transform);
+        GameObject card = Instantiate(cardPrefab, transform);
+        card.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        card.GetComponentInChildren<PhotonCardUI>().UnHideCardBack();
     }
 }

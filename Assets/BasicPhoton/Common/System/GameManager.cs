@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
         PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
     }
-    [PunRPC]
-    void RPC_SyncTurn(bool isMyTurn)
+    // [PunRPC]
+    public void SyncTurn(bool isMyTurn)
     {
         if (isMyTurn)
         {
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
         else
+        if (!isMyTurn)
         {
             photonCardSpawner.EnemyCardUISide();
         }

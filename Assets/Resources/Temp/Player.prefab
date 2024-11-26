@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 6601939946894920960}
   - component: {fileID: 1185911101400187939}
   - component: {fileID: 3152380245837386385}
+  - component: {fileID: 3793374275732541684}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -296,6 +297,28 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &3793374275732541684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492620298124249523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d23d304b276554b84ffe1d2788df5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  isMyTurn: 0
+  maxHp: 30
+  currentHp: 30
+  pAtk: 0
+  cardInHand: 0
+  maxCardInHand: 8
+  currentMp: 0
+  unlockedMp: 1
+  maxMp: 9
 --- !u!1001 &628330647038553730
 PrefabInstance:
   m_ObjectHideFlags: 0

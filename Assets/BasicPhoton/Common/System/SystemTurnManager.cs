@@ -62,7 +62,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
 
     public void OnNextTurnButtonClicked()
     {
-        DrawOnChangeTurn();
+        // DrawOnChangeTurn();
         if (!isMyTurn) return;
         Player player = GetNextPlayer();
         if (player == null) return;
@@ -73,7 +73,8 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
     }
     void DrawOnChangeTurn()
     {//draw
-        GameManager.Instance.photonView.RPC("RPC_SyncTurn", RpcTarget.All, isMyTurn);
+        // GameManager.Instance.photonView.RPC("RPC_SyncTurn", RpcTarget.All, isMyTurn);
+        GameManager.Instance.SyncTurn(isMyTurn);
     }
     private Player GetNextPlayer()
     {
