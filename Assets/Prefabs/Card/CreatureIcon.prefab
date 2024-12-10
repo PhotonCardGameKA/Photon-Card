@@ -474,8 +474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatureCtrl: {fileID: 2298263126200727169}
-  hpText: {fileID: 717350631339177904}
-  atkText: {fileID: 2277494007964798195}
+  hpText: {fileID: 2277494007964798195}
+  atkText: {fileID: 717350631339177904}
   iconImage: {fileID: 7493468040981885758}
   creatureProp: {fileID: 257612848221737801}
 --- !u!114 &257612848221737801
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5267648, b: 0.9245283, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 6107250661801305376}
   - component: {fileID: 1588825541331828281}
   m_Layer: 6
-  m_Name: ATK
+  m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1148,7 +1148,7 @@ GameObject:
   - component: {fileID: 6133997372674885512}
   - component: {fileID: 6499667944485879237}
   m_Layer: 6
-  m_Name: HP
+  m_Name: ATK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

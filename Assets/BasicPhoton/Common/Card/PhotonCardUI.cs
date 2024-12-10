@@ -16,7 +16,7 @@ public class PhotonCardUI : MonoBehaviour
     public GameObject atkImage;
     //ui
     public TextMeshProUGUI cardNameText;
-    public Sprite iconImage;
+    public Image iconImage;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI atkText;
     public TextMeshProUGUI costText;
@@ -47,7 +47,7 @@ public class PhotonCardUI : MonoBehaviour
     public void InitUI()
     {
         this.UpdateUI();
-        this.iconImage = photonCardProp.cardIcon;
+        this.iconImage.sprite = photonCardProp.cardIcon;
         this.cardNameText.text = photonCardProp.cardName;
     }
 

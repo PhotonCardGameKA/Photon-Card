@@ -19,6 +19,12 @@ public class CreatureUI : MonoBehaviour
     {
         this.LoadCtrl();
     }
+    public void SetUI()
+    {
+        this.hpText.text = creatureProp.currentHp.ToString();
+        this.atkText.text = creatureProp.currentAtk.ToString();
+        this.iconImage.sprite = creatureProp.cardIcon;
+    }
     private void LoadCtrl()
     {
         if (this.creatureCtrl != null) return;

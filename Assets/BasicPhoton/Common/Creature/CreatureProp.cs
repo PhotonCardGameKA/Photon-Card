@@ -47,5 +47,6 @@ public class CreatureProp : MonoBehaviour
         this.cardIcon = this.photonCardProp.cardIcon;
         this.cardName = this.photonCardProp.cardName;
         this.description = this.photonCardProp.description;
+        this.creatureUI.SetUI();
     }
 }

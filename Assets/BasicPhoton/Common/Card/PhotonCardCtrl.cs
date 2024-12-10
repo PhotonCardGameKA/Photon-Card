@@ -4,6 +4,7 @@ public class PhotonCardCtrl : MonoBehaviour
 {
     [SerializeField] public PhotonCardUI photonCardUI;
     [SerializeField] public PhotonCardProp photonCardProp;
+    public DragDrop dragDrop;
     public CardInfo cardInfo;
     // [SerializeField] public PhotonCardSpawner photonCardSpawner;
 
@@ -16,6 +17,7 @@ public class PhotonCardCtrl : MonoBehaviour
         this.LoadCardUI();
         this.LoadCardProp();
         this.LoadCardSpawner();
+        this.LoadDragDrop();
     }
     protected virtual void LoadCardUI()
     {
@@ -31,5 +33,10 @@ public class PhotonCardCtrl : MonoBehaviour
     {
         // if (this.photonCardSpawner != null) return;
         // this.photonCardSpawner = GetComponentInChildren<PhotonCardSpawner>();
+    }
+    protected virtual void LoadDragDrop()
+    {
+        if (this.dragDrop != null) return;
+        this.dragDrop = GetComponent<DragDrop>();
     }
 }
