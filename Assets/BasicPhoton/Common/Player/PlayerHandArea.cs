@@ -17,8 +17,4 @@ public class PlayerHandArea : MonoBehaviour
     {
         Init();
     }
-    void Reset()
-    {
-        Init();
-    }
 }

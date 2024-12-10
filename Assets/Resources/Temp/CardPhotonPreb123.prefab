@@ -783,10 +783,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardBack: {fileID: 3887253395044806715}
-  selectedVisual: {fileID: 0}
+  cardName: {fileID: 0}
   hpImage: {fileID: 8394221568079963970}
+  description: {fileID: 0}
+  cost: {fileID: 0}
   atkImage: {fileID: 6985197143348515285}
+  cardNameText: {fileID: 0}
+  iconImage: {fileID: 0}
+  hpText: {fileID: 0}
+  atkText: {fileID: 0}
+  costText: {fileID: 0}
+  descriptionText: {fileID: 0}
   photonCardCtrl: {fileID: 0}
+  photonCardProp: {fileID: 0}
 --- !u!1 &6058774426693395891
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,11 +920,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photonCardCtrl: {fileID: 0}
+  photonCardUI: {fileID: 0}
   currentHp: 0
   maxHp: 0
   currentAtk: 0
   maxAtk: 0
+  cost: 0
+  cardIcon: {fileID: 0}
   usedThisTurn: 0
+  cardName: 
+  description: 
 --- !u!1 &6674433616033569873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonCardUI: {fileID: 0}
   photonCardProp: {fileID: 0}
-  photonCardSpawner: {fileID: 0}
+  cardInfo: {fileID: 0}
 --- !u!114 &6540129904478545410
 MonoBehaviour:
   m_ObjectHideFlags: 0

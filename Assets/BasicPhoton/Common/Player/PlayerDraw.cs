@@ -34,30 +34,17 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
     {
         StartCoroutine(WaitForPlayerController());
     }
-    [PunRPC]
-    private void RPC_Draw()
-    {
 
-        GameObject card;
-        PhotonCardUI photonCardUI;
-
-        Debug.Log("Draw");
-        card = MasterManager.NetworkInstantiate(cardPrefab, transform.position, transform.rotation);
-        listTemp.Add(card);
-        photonCardUI = card.GetComponentInChildren<PhotonCardUI>();
-        photonCardUI.ShowCardBack();
-
-        card.transform.SetParent(playerArea.transform, false);
-        Debug.Log("1");
-        // card.transform.SetParent(playerArea.yourOPHandPrefab.transform, false);
-        // Debug.Log("2");
-
-
-    }
     public void DrawLocal()
     {
         GameObject cardToDraw = Instantiate(cardPrefab);
         cardToDraw.transform.SetParent(playerArea.yourHandPrefab.transform, false);
+        //set info to card draw
+        CardInfo cardInfo = playerController.PlayerDeck.Draw();
+        cardToDraw.GetComponentInChildren<PhotonCardProp>().SetProp(cardInfo);
+        cardToDraw.GetComponent<PhotonCardCtrl>().cardInfo = cardInfo;
+        cardToDraw.GetComponentInChildren<PhotonCardUI>().InitUI();
+
         playerArea.cardholder.Add(cardToDraw);
     }
 

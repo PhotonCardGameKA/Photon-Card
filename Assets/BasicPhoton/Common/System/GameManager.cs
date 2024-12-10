@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private PlayerManager p2Manager;
     public GameObject playerInstantiateObj;
     public PhotonCardSpawner photonCardSpawner;
+    [SerializeField] public List<int> playerRef;
     void Awake()
     {
         if (Instance != null)
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void AddPlayerRef()
     {
         InstantiateEndTurn instantiateEndTurn = playerInstantiateObj.GetComponent<InstantiateEndTurn>();
+        playerRef = instantiateEndTurn.playerRef;
 
         P1 = PhotonView.Find(instantiateEndTurn.playerRef[0]);
         p1Manager = P1.gameObject.GetComponent<PlayerManager>();

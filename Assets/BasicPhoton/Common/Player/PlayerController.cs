@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public PlayerDraw PlayerDraw => playerDraw;
     [SerializeField] private PlayerHandArea playerHandArea;
     public PlayerHandArea PlayerHandArea => playerHandArea;
+    [SerializeField] private PlayerDeck playerDeck;
+    public PlayerDeck PlayerDeck => playerDeck;
     private void Awake()
     {
 
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         this.LoadPlayerDraw();
         this.LoadHandArea();
+        this.LoadPlayerDeck();
     }
     private void LoadPlayerDraw()
     {
@@ -30,5 +33,10 @@ public class PlayerController : MonoBehaviour
     {
         if (this.playerHandArea != null) return;
         playerHandArea = transform.GetComponentInChildren<PlayerHandArea>();
+    }
+    private void LoadPlayerDeck()
+    {
+        if (this.playerDeck != null) return;
+        playerDeck = transform.GetComponentInChildren<PlayerDeck>();
     }
 }

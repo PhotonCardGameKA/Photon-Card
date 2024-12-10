@@ -1,3 +1,4 @@
 -card instantiate chua dung player.
 -chua co set cardback
 -rpc
+-chỉnh time draw để thực hiện hàm

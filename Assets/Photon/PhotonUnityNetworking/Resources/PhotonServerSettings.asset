@@ -61,6 +61,9 @@ MonoBehaviour:
   - RPC_SyncParent
   - SyncTurn
   - RPC_SyncTurn
+  - RPC_SyncDeck
+  - RPC_SendDeck
+  - RPC_SyncOp
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

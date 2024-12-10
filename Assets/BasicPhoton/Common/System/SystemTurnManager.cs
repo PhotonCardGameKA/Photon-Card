@@ -73,7 +73,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
     }
     void DrawOnChangeTurn()
     {//draw
-        // GameManager.Instance.photonView.RPC("RPC_SyncTurn", RpcTarget.All, isMyTurn);
+
         GameManager.Instance.SyncTurn(isMyTurn);
     }
     private Player GetNextPlayer()

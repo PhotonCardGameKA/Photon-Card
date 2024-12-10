@@ -4,6 +4,7 @@ public class PhotonCardCtrl : MonoBehaviour
 {
     [SerializeField] public PhotonCardUI photonCardUI;
     [SerializeField] public PhotonCardProp photonCardProp;
+    public CardInfo cardInfo;
     // [SerializeField] public PhotonCardSpawner photonCardSpawner;
 
     void Awake()

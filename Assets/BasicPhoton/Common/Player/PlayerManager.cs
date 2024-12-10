@@ -1,8 +1,12 @@
+using System.Collections.Generic;
 using Photon.Pun;
+using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks
 {
     public PlayerController playerController;
+    public GameObject opRefLocal;
+    public PlayerDeck yourDeckNetwork;
     #region player
     public bool isMyTurn = false;
     public int maxHp = 30;
@@ -13,6 +17,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     public int currentMp = 0;
     public int unlockedMp = 1;
     public int maxMp = 9;
+    public List<CardInfo> deck;
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -50,4 +55,24 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         else currentHp += healAmount;
     }
     #endregion
+    [PunRPC]
+    void RPC_SyncOp()
+    {
+        foreach (int pvId in GameManager.Instance.playerRef)
+        {
+            if (photonView.ViewID != pvId)
+            {
+                PhotonView opView = PhotonView.Find(pvId);
+                this.opRefLocal = opView.gameObject;
+            }
+        }
+    }
+    [PunRPC]
+    void RPC_SendDeck(List<int> l)
+    {
+        if (photonView.IsMine)
+        {
+
+        }
+    }
 }
