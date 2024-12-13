@@ -14,4 +14,8 @@ public class CreatureSpawner : MonoBehaviour
         prop.SetProp();
         return newCreature;
     }
+    public GameObject SpawnAtEnemySide()
+    {
+        return null;
+    }
 }

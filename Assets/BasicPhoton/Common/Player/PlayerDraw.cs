@@ -9,7 +9,7 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
     [SerializeField] PlayerController playerController;
     [SerializeField] protected GameObject cardPrefab;
     [SerializeField] protected PlayerHandArea playerArea;
-    [SerializeField] List<GameObject> listTemp;
+    // [SerializeField] List<GameObject> listTemp;
     GameObject tempCard;
 
     IEnumerator WaitForPlayerController()
