@@ -55,7 +55,8 @@ public class DropZone : MonoBehaviour, IDropHandler
             propOfCreature.cost,
             // propOfCreature.cardIcon,
             propOfCreature.cardName,
-            propOfCreature.description
+            propOfCreature.description,
+            propOfCreature.transform.parent.name,
         };
 
         RaiseEventOptions options = new RaiseEventOptions

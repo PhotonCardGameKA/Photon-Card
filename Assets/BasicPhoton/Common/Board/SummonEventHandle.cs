@@ -65,6 +65,7 @@ public class SummonEventHandler : MonoBehaviourPun
             // Sprite sprite = (Sprite)data[5];
             string cardName = (string)data[5];
             string description = (string)data[6];
+            string creatureName = (string)data[7];
             Sprite sprite = FindSpriteByName(cardName);
             PhotonCardProp prop = new PhotonCardProp();
 
@@ -78,7 +79,7 @@ public class SummonEventHandler : MonoBehaviourPun
             prop.description = description;
 
             GameObject newCreature = this.creatureSpawner.SpawnWithProp(prop);
-
+            newCreature.name = creatureName;
             newCreature.transform.SetParent(dropZoneEnemy.transform, false);
         }
     }

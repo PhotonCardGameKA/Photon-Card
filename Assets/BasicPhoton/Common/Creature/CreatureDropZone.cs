@@ -1,12 +1,21 @@
 using System.Collections;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CreatureDropZone : MonoBehaviour, IDropHandler
+public class CreatureDropZone : MonoBehaviour, IDropHandler // dùng trên creature bị tấn công local,
+//sau do gui thong tin cho creature doi phuong
 {
+    public CreatureCtrl creatureCtrl;
+    private void Awake()
+    {
+        if (this.creatureCtrl != null) return;
+        this.creatureCtrl = GetComponentInParent<CreatureCtrl>();
+    }
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
+        if (eventData.pointerDrag != null)//creature tấn công
         {
             if (eventData.pointerDrag.CompareTag("Arrow"))
             {
@@ -15,10 +24,25 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
             }
         }
     }
+    private void ReceiveDamage(CreatureProp propOfCreature)
+    {
+        object[] eventData = new object[]
+        {
+            propOfCreature.transform.parent.name,//name of damaged creature
+            propOfCreature.currentHp,//hp of attacking creature
+            propOfCreature.currentAtk//atk of attacking creature
+        };
 
-    private IEnumerator AttackAnimation(Transform attackingCreature)
+        RaiseEventOptions options = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others
+        };
+        PhotonNetwork.RaiseEvent((byte)CreatureEvent.Code.ReceiveDamage, eventData, options, ExitGames.Client.Photon.SendOptions.SendReliable);
+    }
+    private IEnumerator AttackAnimation(Transform attackingCreature)//anim cua creature tan cong
     {
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
+        CreatureCtrl attackingCreatureCtrl = attackingCreature.GetComponent<CreatureCtrl>();
         yield return new WaitForSeconds(0.05f);
         arrow.gameObject.SetActive(false);
         Vector3 originalPosition = attackingCreature.position;
@@ -53,7 +77,8 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         attackingCreature.position = originalPosition;
 
         // Gây damage (tạm thời chỉ log ra)
-        Debug.Log("Damage dealt to enemy!");
+        Debug.Log("Receive Damage");
+        this.ReceiveDamage(attackingCreatureCtrl.creatureProp);
         yield return new WaitForSeconds(0.05f);
         arrow.gameObject.SetActive(true);
     }

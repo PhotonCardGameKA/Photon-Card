@@ -6,6 +6,8 @@ public class CreatureCtrl : MonoBehaviour
 {
     public CreatureProp creatureProp;
     public CreatureUI creatureUI;
+    public CreatureDropZone creatureDropZone;
+    public CreatureActionHandle creatureActionHandle;
     private void Awake()
     {
         this.LoadComponents();
@@ -14,6 +16,8 @@ public class CreatureCtrl : MonoBehaviour
     {
         this.LoadUI();
         this.LoadProp();
+        this.LoadDropZone();
+        // this.LoadAction();
     }
     private void LoadUI()
     {
@@ -24,5 +28,15 @@ public class CreatureCtrl : MonoBehaviour
     {
         if (this.creatureProp != null) return;
         this.creatureProp = GetComponentInChildren<CreatureProp>();
+    }
+    private void LoadDropZone()
+    {
+        if (this.creatureDropZone != null) return;
+        this.creatureDropZone = GetComponent<CreatureDropZone>();
+    }
+    private void LoadAction()
+    {
+        if (this.creatureActionHandle != null) return;
+        this.creatureActionHandle = GetComponentInChildren<CreatureActionHandle>();
     }
 }

@@ -49,4 +49,8 @@ public class CreatureProp : MonoBehaviour
         this.description = this.photonCardProp.description;
         this.creatureUI.SetUI();
     }
+    public void TakeDamage(int damage)
+    {
+        this.currentHp -= damage;
+    }
 }

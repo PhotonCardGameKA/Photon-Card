@@ -9,6 +9,7 @@ public class PhotonCardProp : MonoBehaviour
     [SerializeField] private PhotonCardCtrl photonCardCtrl;
     [SerializeField] private PhotonCardUI photonCardUI;
     // public CardInfo cardInfo;
+    public int ownerId;
     public int currentHp;
     public int maxHp;
     public int currentAtk;
@@ -29,6 +30,7 @@ public class PhotonCardProp : MonoBehaviour
         this.description = cardInfo.description;
         this.cardIcon = cardInfo.iconImage;
     }
+
     void Awake()
     {
         if (this.photonCardCtrl != null) return;
