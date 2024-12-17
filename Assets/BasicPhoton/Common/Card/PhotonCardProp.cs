@@ -9,6 +9,8 @@ public class PhotonCardProp : MonoBehaviour
     [SerializeField] private PhotonCardCtrl photonCardCtrl;
     [SerializeField] private PhotonCardUI photonCardUI;
     // public CardInfo cardInfo;
+    public int pvOwnerId;
+    public int pvOPId;
     public int currentHp;
     public int maxHp;
     public int currentAtk;
@@ -20,6 +22,7 @@ public class PhotonCardProp : MonoBehaviour
     public string description;
     public void SetProp(CardInfo cardInfo)//use for init and reset
     {
+        this.SetPvId();
         this.currentHp = cardInfo.currentHp;
         this.maxHp = cardInfo.maxHp;
         this.currentAtk = cardInfo.currentAtk;
@@ -28,6 +31,19 @@ public class PhotonCardProp : MonoBehaviour
         this.cardName = cardInfo.cardName;
         this.description = cardInfo.description;
         this.cardIcon = cardInfo.iconImage;
+    }
+    public void SetPvId()
+    {
+        if (GameManager.Instance.P1.IsMine)
+        {
+            pvOwnerId = GameManager.Instance.P1.ViewID;
+            pvOPId = GameManager.Instance.P2.ViewID;
+        }
+        else
+        {
+            pvOPId = GameManager.Instance.P1.ViewID;
+            pvOwnerId = GameManager.Instance.P2.ViewID;
+        }
     }
     void Awake()
     {

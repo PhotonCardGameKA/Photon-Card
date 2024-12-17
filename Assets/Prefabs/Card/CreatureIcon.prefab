@@ -493,6 +493,8 @@ MonoBehaviour:
   creatureCtrl: {fileID: 2298263126200727169}
   photonCardProp: {fileID: 0}
   creatureUI: {fileID: 984522325162347669}
+  pvOwnerId: 0
+  pvOPId: 0
   currentHp: 0
   maxHp: 0
   currentAtk: 0
@@ -897,6 +899,7 @@ RectTransform:
   - {fileID: 4162653696601322948}
   - {fileID: 2747755737036746069}
   - {fileID: 7118343962121134630}
+  - {fileID: 7407738235849162391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -926,6 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureProp: {fileID: 257612848221737801}
   creatureUI: {fileID: 984522325162347669}
+  creatureAction: {fileID: 5370280546979182430}
 --- !u!1 &4903734887141955385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1140,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7541977043699175521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7407738235849162391}
+  - component: {fileID: 5370280546979182430}
+  m_Layer: 6
+  m_Name: CreatureAction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7407738235849162391
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541977043699175521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5972306735181807851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5370280546979182430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541977043699175521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e463e95d0e35e254cb90a391c9aca335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureCtrl: {fileID: 2298263126200727169}
 --- !u!1 &8117574211656461002
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,12 @@ using UnityEngine.EventSystems;
 
 public class CreatureDropZone : MonoBehaviour, IDropHandler
 {
+    public CreatureCtrl creatureCtrl;
+    private void Awake()
+    {
+        if (this.creatureCtrl != null) return;
+        this.creatureCtrl = GetComponent<CreatureCtrl>();
+    }
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
@@ -15,7 +21,13 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
             }
         }
     }
-
+    public void BothTakeDamage(CreatureCtrl attackingCreature, CreatureCtrl receiveDamageCreature)
+    {
+        int attackingCreatureDmg = attackingCreature.creatureProp.currentAtk;
+        int receiverCreatureDmg = receiveDamageCreature.creatureProp.currentAtk;
+        attackingCreature.creatureAction.TakeDamage(receiverCreatureDmg);
+        receiveDamageCreature.creatureAction.TakeDamage(attackingCreatureDmg);
+    }
     private IEnumerator AttackAnimation(Transform attackingCreature)
     {
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
@@ -54,6 +66,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
 
         // Gây damage (tạm thời chỉ log ra)
         Debug.Log("Damage dealt to enemy!");
+        BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
         yield return new WaitForSeconds(0.05f);
         arrow.gameObject.SetActive(true);
     }

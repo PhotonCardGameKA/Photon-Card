@@ -6,6 +6,7 @@ public class CreatureCtrl : MonoBehaviour
 {
     public CreatureProp creatureProp;
     public CreatureUI creatureUI;
+    public CreatureAction creatureAction;
     private void Awake()
     {
         this.LoadComponents();
@@ -24,5 +25,10 @@ public class CreatureCtrl : MonoBehaviour
     {
         if (this.creatureProp != null) return;
         this.creatureProp = GetComponentInChildren<CreatureProp>();
+    }
+    private void LoadAction()
+    {
+        if (this.creatureAction != null) return;
+        this.creatureAction = GetComponentInChildren<CreatureAction>();
     }
 }

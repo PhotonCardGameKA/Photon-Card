@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class CreatureProp : MonoBehaviour
@@ -8,6 +9,8 @@ public class CreatureProp : MonoBehaviour
     public PhotonCardProp photonCardProp;
     public CreatureUI creatureUI;
     //prop
+    public int pvOwnerId;
+    public int pvOPId;
     public int currentHp;
     public int maxHp;
     public int currentAtk;
@@ -33,12 +36,23 @@ public class CreatureProp : MonoBehaviour
         if (this.creatureUI != null) return;
         this.creatureUI = this.creatureCtrl.creatureUI;
     }
+    public void DeductDamage(int dmg)
+    {
+        this.currentHp -= dmg;
+    }
+    public bool IsDead()
+    {
+        if (this.currentHp <= 0) return true;
+        return false;
+    }
     public void SetCardProp(PhotonCardProp cardProp)
     {
         this.photonCardProp = cardProp;
     }
     public void SetProp()
     {
+        this.pvOwnerId = this.photonCardProp.pvOwnerId;
+        this.pvOPId = this.photonCardProp.pvOPId;
         this.currentHp = this.photonCardProp.currentHp;
         this.maxHp = this.photonCardProp.maxHp;
         this.currentAtk = this.photonCardProp.currentAtk;

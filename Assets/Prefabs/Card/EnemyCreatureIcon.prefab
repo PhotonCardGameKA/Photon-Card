@@ -452,6 +452,8 @@ MonoBehaviour:
   creatureCtrl: {fileID: 2298263126200727169}
   photonCardProp: {fileID: 0}
   creatureUI: {fileID: 984522325162347669}
+  pvOwnerId: 0
+  pvOPId: 0
   currentHp: 0
   maxHp: 0
   currentAtk: 0
@@ -753,6 +755,7 @@ RectTransform:
   - {fileID: 4162653696601322948}
   - {fileID: 2747755737036746069}
   - {fileID: 1791105858919955581}
+  - {fileID: 6905538613582894323}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -782,6 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureProp: {fileID: 257612848221737801}
   creatureUI: {fileID: 984522325162347669}
+  creatureAction: {fileID: 5645854586540055167}
 --- !u!114 &8003986179175257785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,3 +1159,52 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8275186044867813911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6905538613582894323}
+  - component: {fileID: 5645854586540055167}
+  m_Layer: 6
+  m_Name: CreatureAction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6905538613582894323
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275186044867813911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5972306735181807851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5645854586540055167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275186044867813911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e463e95d0e35e254cb90a391c9aca335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureCtrl: {fileID: 2298263126200727169}

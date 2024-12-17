@@ -9,6 +9,7 @@ public class SummonEventHandler : MonoBehaviourPun
     [SerializeField] private CreatureSpawner creatureSpawner;
     public GameObject dropZoneEnemy;
     public CardInfo[] allCard;
+    public GameObject propHolder;
     public void LoadCardData()
     {
         this.allCard = Resources.LoadAll<CardInfo>("CardDatabase");
@@ -62,12 +63,16 @@ public class SummonEventHandler : MonoBehaviourPun
             int currentAtk = (int)data[2];
             int maxAtk = (int)data[3];
             int cost = (int)data[4];
+            int ownerId = (int)data[7];
             // Sprite sprite = (Sprite)data[5];
             string cardName = (string)data[5];
             string description = (string)data[6];
+            int opId = (int)data[8];
             Sprite sprite = FindSpriteByName(cardName);
-            PhotonCardProp prop = new PhotonCardProp();
-
+            // GameObject temp = new GameObject("temp");
+            // temp.AddComponent<PhotonCardProp>();
+            PhotonCardProp prop = propHolder.GetComponent<PhotonCardProp>();
+            prop.pvOwnerId = ownerId;
             prop.currentHp = currentHp;
             prop.maxHp = maxHp;
             prop.cardIcon = sprite;
@@ -76,7 +81,7 @@ public class SummonEventHandler : MonoBehaviourPun
             prop.cost = cost;
             prop.cardName = cardName;
             prop.description = description;
-
+            prop.pvOPId = opId;
             GameObject newCreature = this.creatureSpawner.SpawnWithProp(prop);
 
             newCreature.transform.SetParent(dropZoneEnemy.transform, false);

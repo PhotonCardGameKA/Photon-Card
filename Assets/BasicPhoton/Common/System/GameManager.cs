@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
-    [SerializeField] private PhotonView P1;
-    [SerializeField] private PhotonView P2;
+    [SerializeField] public PhotonView P1;
+    [SerializeField] public PhotonView P2;
     [SerializeField] private PlayerManager p1Manager;
     [SerializeField] private PlayerManager p2Manager;
     public GameObject playerInstantiateObj;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Instance = this;
         LoadPlayerInstantiate();
-        Invoke(nameof(this.AddPlayerRef), 5f);
+        Invoke(nameof(this.AddPlayerRef), 2f);
         LoadPhotonCardSpawner();
         //do some animation
     }
