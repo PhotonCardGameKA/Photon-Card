@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Instance = this;
         LoadPlayerInstantiate();
-        Invoke(nameof(this.AddPlayerRef), 2f);
+        Invoke(nameof(this.AddPlayerRef), 1f);
         LoadPhotonCardSpawner();
         //do some animation
     }
