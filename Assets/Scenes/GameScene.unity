@@ -172,6 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonCardCtrl: {fileID: 0}
   photonCardUI: {fileID: 0}
+  objectName: 
+  pvOwnerId: 0
+  pvOPId: 0
   currentHp: 0
   maxHp: 0
   currentAtk: 0
@@ -1114,6 +1117,8 @@ MonoBehaviour:
   dropZoneEnemy: {fileID: 875743081}
   allCard: []
   propHolder: {fileID: 293753584}
+  enemyCreatureHolder: []
+  enemyLocalHand: {fileID: 0}
 --- !u!1 &915260297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +2996,7 @@ GameObject:
   - component: {fileID: 8469874867397645523}
   - component: {fileID: 8469874867397645524}
   - component: {fileID: 8469874867397645525}
+  - component: {fileID: 8469874867397645526}
   m_Layer: 7
   m_Name: DropZoneP
   m_TagString: Untagged
@@ -3049,6 +3055,7 @@ GameObject:
   - component: {fileID: 7839056106368071685}
   - component: {fileID: 1575499283795634186}
   - component: {fileID: 8718047589428539618}
+  - component: {fileID: 8718047589428539619}
   m_Layer: 5
   m_Name: EnemyArea
   m_TagString: Untagged
@@ -3390,6 +3397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureSpawner: {fileID: 8469874867397645524}
   dropZoneEnemy: {fileID: 0}
+  boardCtrl: {fileID: 0}
 --- !u!114 &8469874867397645524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3417,6 +3425,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureRef: []
   heroReference: {fileID: 0}
+  receiveDamageEventHandle: {fileID: 0}
+  opBoard: {fileID: 0}
+--- !u!114 &8469874867397645526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150301827363577083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b44624abca5f85468464d6ed1256452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardCtrl: {fileID: 8469874867397645525}
 --- !u!1 &8492620297529297711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,6 +3494,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 7677954462705160159, guid: 796bbce7be1eb4a478c8ecede5ecb60a, type: 3}
+--- !u!114 &8718047589428539619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056926082198820078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca3dd8975bf336468e76fb83a69238f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHolder: []
 --- !u!114 &8935220158807043254
 MonoBehaviour:
   m_ObjectHideFlags: 0

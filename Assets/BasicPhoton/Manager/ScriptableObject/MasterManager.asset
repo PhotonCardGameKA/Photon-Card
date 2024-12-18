@@ -18,17 +18,17 @@ MonoBehaviour:
     Path: BigAsteroid
   - Prefab: {fileID: 100030, guid: fe764102aa5aa431795da15fa2dec0e2, type: 3}
     Path: My Robot Kyle -done-
-  - Prefab: {fileID: 4923066053481051451, guid: 9af121b52ac84f442b58828417023c2e, type: 3}
-    Path: PhotonPlayer
   - Prefab: {fileID: 174002, guid: c9248d8e58293473bb27cf2f5505f88b, type: 3}
     Path: Player Controller
   - Prefab: {fileID: 151774, guid: 18a79aea49b60d342b7a672b7a34edbe, type: 3}
     Path: SmallAsteroid
   - Prefab: {fileID: 178952, guid: 775dd0a15ad25a544b33ad40ef0da1f0, type: 3}
     Path: Spaceship
-  - Prefab: {fileID: 345696786660053201, guid: 60f66da49fbff9d4089da10dd3a2351c, type: 3}
-    Path: Temp/CardPhotonPreb2
+  - Prefab: {fileID: 7701201854072810298, guid: c80522dedf9283f4dbc221e7723ee8e9, type: 3}
+    Path: Temp/CardPhotonPreb123
   - Prefab: {fileID: 2188512153196435996, guid: 1d794aeb24d57b3438a95e0dd3986fea, type: 3}
     Path: Temp/EndTurn
-  - Prefab: {fileID: 6547747031606783280, guid: a9af448d834c3c04b8deefa2bb448592, type: 3}
-    Path: Temp/Square
+  - Prefab: {fileID: 6875822111757695958, guid: ca128452547354b4b85536c3721e17dd, type: 3}
+    Path: Temp/Enemy
+  - Prefab: {fileID: 8492620298124249523, guid: 10dcdc8d0498b3d428cdd8a3c06cd130, type: 3}
+    Path: Temp/PlayerOfThisGame

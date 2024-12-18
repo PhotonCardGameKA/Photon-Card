@@ -1,4 +1,6 @@
 using System.Collections;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,10 +16,11 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag != null)
         {
+            if (eventData.pointerDrag.transform.parent.GetComponentInChildren<CreatureProp>().pvOwnerId == creatureCtrl.creatureProp.pvOwnerId) return;
             if (eventData.pointerDrag.CompareTag("Arrow"))
             {
                 StartCoroutine(AttackAnimation(eventData.pointerDrag.transform.parent.transform));
-
+                this.BothTakeDamage_RaiseEvent(eventData.pointerDrag.transform.GetComponentInParent<CreatureCtrl>(), creatureCtrl);
             }
         }
     }
@@ -28,11 +31,31 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         attackingCreature.creatureAction.TakeDamage(receiverCreatureDmg);
         receiveDamageCreature.creatureAction.TakeDamage(attackingCreatureDmg);
     }
+    public void BothTakeDamage_RaiseEvent(CreatureCtrl attackingCreature, CreatureCtrl receiveDamageCreature)
+    {
+        object[] eventData = new object[]
+        {
+            attackingCreature.transform.name,
+            receiveDamageCreature.transform.name,
+        };
+        // Debug.Log(eventData[0] + " " + eventData[1]);
+        RaiseEventOptions options = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.Others
+        };
+        PhotonNetwork.RaiseEvent((byte)CreatureEvent.Code.CreatureAttack, eventData, options, ExitGames.Client.Photon.SendOptions.SendReliable);
+
+    }
+    public void publicAttackAnimation(Transform attackingCreature)
+    {
+        StartCoroutine(AttackAnimation(attackingCreature));
+    }
     private IEnumerator AttackAnimation(Transform attackingCreature)
     {
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
         yield return new WaitForSeconds(0.05f);
-        arrow.gameObject.SetActive(false);
+        if (arrow != null) arrow.gameObject.SetActive(false);
+
         Vector3 originalPosition = attackingCreature.position;
         Vector3 targetPosition = transform.position;
 
@@ -68,6 +91,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         Debug.Log("Damage dealt to enemy!");
         BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
         yield return new WaitForSeconds(0.05f);
-        arrow.gameObject.SetActive(true);
+        if (arrow != null)
+            arrow.gameObject.SetActive(true);
     }
 }

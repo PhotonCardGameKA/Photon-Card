@@ -18,15 +18,19 @@ public class MasterManager : SingletonScriptableObject<MasterManager>
 
     public static GameObject NetworkInstantiate(GameObject obj, Vector3 position, quaternion rotation)
     {
+        // foreach (NetworkPrefab networkPrefab in Instance._networkPrefabs)
+        // {
+        //     Debug.LogError(networkPrefab.Path);
+        // }
+
         foreach (NetworkPrefab networkPrefab in Instance._networkPrefabs)
         {
+
             if (networkPrefab.Prefab == obj)
             {
                 if (networkPrefab.Path != string.Empty)
                 {
                     GameObject result = PhotonNetwork.Instantiate(networkPrefab.Path, position, rotation);
-                    // Debug.LogError(networkPrefab.Path);
-                    // result.transform.SetParent(parent, false);
                     return result;
                 }
                 else

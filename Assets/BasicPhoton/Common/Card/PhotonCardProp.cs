@@ -9,6 +9,7 @@ public class PhotonCardProp : MonoBehaviour
     [SerializeField] private PhotonCardCtrl photonCardCtrl;
     [SerializeField] private PhotonCardUI photonCardUI;
     // public CardInfo cardInfo;
+    public string objectName;
     public int pvOwnerId;
     public int pvOPId;
     public int currentHp;

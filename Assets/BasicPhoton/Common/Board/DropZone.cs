@@ -9,6 +9,7 @@ public class DropZone : MonoBehaviour, IDropHandler
 {
     [SerializeField] private CreatureSpawner creatureSpawner;
     public GameObject dropZoneEnemy;//(máy1-PZone) (máy2-EZone)
+    public BoardCtrl boardCtrl;
     private void Awake()
     {
         this.LoadComponents();
@@ -16,11 +17,17 @@ public class DropZone : MonoBehaviour, IDropHandler
     private void LoadComponents()
     {
         this.LoadCreatureSpawner();
+        this.LoadBoardCtrl();
     }
     private void LoadCreatureSpawner()
     {
         if (this.creatureSpawner != null) return;
         this.creatureSpawner = GetComponent<CreatureSpawner>();
+    }
+    private void LoadBoardCtrl()
+    {
+        if (this.boardCtrl != null) return;
+        this.boardCtrl = GetComponent<BoardCtrl>();
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -33,10 +40,11 @@ public class DropZone : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.gameObject.SetActive(false);
                 //card hủy rồi thì sum quái
                 PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
-
+                string uniqueName = propOfCreature.pvOwnerId.ToString() + "_" + (System.DateTime.Now.Ticks % 10000).ToString();
+                propOfCreature.objectName = uniqueName;
                 GameObject newCreature = this.creatureSpawner.SpawnWithProp(propOfCreature);
                 newCreature.transform.SetParent(transform, false);
-
+                boardCtrl.UpdateListCreature();
                 this.RaiseSummonEvent(propOfCreature);
             }
 
@@ -58,6 +66,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             propOfCreature.description,
             propOfCreature.pvOwnerId,
             propOfCreature.pvOPId,
+            propOfCreature.objectName,
         };
 
         RaiseEventOptions options = new RaiseEventOptions
