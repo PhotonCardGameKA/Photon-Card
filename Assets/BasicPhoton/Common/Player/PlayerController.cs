@@ -9,20 +9,22 @@ public class PlayerController : MonoBehaviour
     public PlayerHandArea PlayerHandArea => playerHandArea;
     [SerializeField] private PlayerDeck playerDeck;
     public PlayerDeck PlayerDeck => playerDeck;
+    public PlayerDeckUICtrl playerDeckUICtrl;
     private void Awake()
     {
-
+        this.LoadComponents();
     }
     private void Start()
     {
 
-        this.LoadComponents();
+
     }
     private void LoadComponents()
     {
         this.LoadPlayerDraw();
         this.LoadHandArea();
         this.LoadPlayerDeck();
+        this.LoadDeckUICtrl();
     }
     private void LoadPlayerDraw()
     {
@@ -38,5 +40,10 @@ public class PlayerController : MonoBehaviour
     {
         if (this.playerDeck != null) return;
         playerDeck = transform.GetComponentInChildren<PlayerDeck>();
+    }
+    private void LoadDeckUICtrl()
+    {
+        if (this.playerDeckUICtrl != null) return;
+        playerDeckUICtrl = transform.GetComponentInChildren<PlayerDeckUICtrl>();
     }
 }

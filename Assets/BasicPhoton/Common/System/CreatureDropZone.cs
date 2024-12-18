@@ -54,8 +54,13 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     {
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
         yield return new WaitForSeconds(0.05f);
-        if (arrow != null) arrow.gameObject.SetActive(false);
-
+        // int flag = 0;
+        // if (arrow != null)
+        // {
+        //     flag = 1;
+        if (arrow != null)
+            arrow.gameObject.SetActive(false);
+        // }
         Vector3 originalPosition = attackingCreature.position;
         Vector3 targetPosition = transform.position;
 
@@ -91,7 +96,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         Debug.Log("Damage dealt to enemy!");
         BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
         yield return new WaitForSeconds(0.05f);
-        if (arrow != null)
+        if (arrow != null && !arrow.gameObject.activeSelf)
             arrow.gameObject.SetActive(true);
     }
 }
