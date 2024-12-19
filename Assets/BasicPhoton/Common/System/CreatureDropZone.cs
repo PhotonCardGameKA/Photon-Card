@@ -14,6 +14,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
+        // Debug.Log("drop");
         if (eventData.pointerDrag != null)
         {
             if (eventData.pointerDrag.transform.parent.GetComponentInChildren<CreatureProp>().pvOwnerId == creatureCtrl.creatureProp.pvOwnerId) return;

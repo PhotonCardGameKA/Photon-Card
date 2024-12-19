@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerInstantiateObj;
     public PhotonCardSpawner photonCardSpawner;
     [SerializeField] public List<int> playerRef;
+    public PlayerRename playerRename;
     void Awake()
     {
+        // if (playerRename == null) playerRename = GetComponent<PlayerRename>();
         if (Instance != null)
         {
             Debug.LogError("Duplicate singleton");
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         LoadPlayerInstantiate();
         Invoke(nameof(this.AddPlayerRef), 1f);
         LoadPhotonCardSpawner();
+
         //do some animation
     }
     void AddPlayerRef()
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         p1Manager = P1.gameObject.GetComponent<PlayerManager>();
         P2 = PhotonView.Find(instantiateEndTurn.playerRef[1]);
         p2Manager = P2.gameObject.GetComponent<PlayerManager>();
+        playerRename.Rename();
     }
     void LoadPlayerInstantiate()
     {
