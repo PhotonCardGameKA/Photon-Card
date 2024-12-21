@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerDeck playerDeck;
     public PlayerDeck PlayerDeck => playerDeck;
     public PlayerDeckUICtrl playerDeckUICtrl;
+    public PlayerMana playerMana;
+    public PlayerManaUI playerManaUI;
     private void Awake()
     {
         this.LoadComponents();
@@ -45,5 +48,15 @@ public class PlayerController : MonoBehaviour
     {
         if (this.playerDeckUICtrl != null) return;
         playerDeckUICtrl = transform.GetComponentInChildren<PlayerDeckUICtrl>();
+    }
+    public void LoadMana()
+    {
+        if (this.playerMana != null) return;
+        this.playerMana = transform.GetComponentInChildren<PlayerMana>();
+    }
+    private void LoadManaUI()
+    {
+        if (this.playerManaUI != null) return;
+        this.playerManaUI = transform.GetComponentInChildren<PlayerManaUI>();
     }
 }

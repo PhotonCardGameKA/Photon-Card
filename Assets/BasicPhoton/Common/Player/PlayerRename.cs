@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerRename : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] public GameObject player;
     [SerializeField] GameObject enemy;
     public void Rename()
     {

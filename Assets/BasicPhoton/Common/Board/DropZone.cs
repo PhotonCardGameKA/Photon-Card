@@ -10,9 +10,19 @@ public class DropZone : MonoBehaviour, IDropHandler
     [SerializeField] private CreatureSpawner creatureSpawner;
     public GameObject dropZoneEnemy;//(máy1-PZone) (máy2-EZone)
     public BoardCtrl boardCtrl;
+    public PlayerController playerController;
     private void Awake()
     {
         this.LoadComponents();
+        StartCoroutine(WaitForController());
+    }
+    IEnumerator WaitForController()
+    {
+        while (GameManager.Instance.yourPlayer == null)
+        {
+            yield return null;
+        }
+        this.playerController = GameManager.Instance.yourPlayer;
     }
     private void LoadComponents()
     {
@@ -31,15 +41,20 @@ public class DropZone : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
+        PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
+        int manaCost = propOfCreature.cost;
+
         if (eventData.pointerDrag != null)
         {
             if (eventData.pointerDrag.tag == "Bullet")
             {
+                if (!playerController.playerMana.IsValidCard(manaCost)) return; // du mana hay ko
+                playerController.playerMana.UseMana(manaCost);
                 //hủy card, tạm thời để active false, sau làm mộ thì cho xuống mộ
                 eventData.pointerDrag.transform.SetParent(transform, false);
                 eventData.pointerDrag.gameObject.SetActive(false);
                 //card hủy rồi thì sum quái
-                PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
+
                 string uniqueName = propOfCreature.pvOwnerId.ToString() + "_" + (System.DateTime.Now.Ticks % 10000).ToString();
                 propOfCreature.objectName = uniqueName;
                 GameObject newCreature = this.creatureSpawner.SpawnWithProp(propOfCreature);

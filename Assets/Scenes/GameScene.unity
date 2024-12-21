@@ -1477,6 +1477,7 @@ MonoBehaviour:
   photonCardSpawner: {fileID: 0}
   playerRef: 
   playerRename: {fileID: 2531678146810537422}
+  yourPlayer: {fileID: 0}
 --- !u!222 &366984454414110526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4580,7 +4581,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureSpawner: {fileID: 8469874867397645524}
   dropZoneEnemy: {fileID: 0}
-  boardCtrl: {fileID: 0}
+  boardCtrl: {fileID: 8469874867397645525}
+  playerController: {fileID: 0}
 --- !u!114 &8469874867397645524
 MonoBehaviour:
   m_ObjectHideFlags: 0

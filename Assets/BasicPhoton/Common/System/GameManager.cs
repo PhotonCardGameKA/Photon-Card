@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public PhotonCardSpawner photonCardSpawner;
     [SerializeField] public List<int> playerRef;
     public PlayerRename playerRename;
+    public PlayerController yourPlayer;
     void Awake()
     {
         // if (playerRename == null) playerRename = GetComponent<PlayerRename>();
@@ -40,6 +41,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         P2 = PhotonView.Find(instantiateEndTurn.playerRef[1]);
         p2Manager = P2.gameObject.GetComponent<PlayerManager>();
         playerRename.Rename();
+        // yourPlayer = playerRename.player.GetComponent<PlayerController>();
+        WaitForPlayerController();
+    }
+    void WaitForPlayerController()
+    {
+        int yourPv;
+        if (P1.IsMine) yourPv = P1.ViewID;
+        else yourPv = P2.ViewID;
+        GameObject playerObject = PhotonView.Find(yourPv).gameObject;
+        this.yourPlayer = playerObject.GetComponent<PlayerController>();
     }
     void LoadPlayerInstantiate()
     {
@@ -74,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (isMyTurn)
         {
+            yourPlayer.playerMana.RefreshAtYourTurn();
             if (P1.IsMine)
             {
                 p1Manager.playerController.PlayerDraw.DrawLocal();
