@@ -41,27 +41,29 @@ public class DropZone : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
+        if (!boardCtrl.turnManager.isMyTurn) return;
+        if (eventData.pointerDrag.tag != "Bullet") return;
         PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
         int manaCost = propOfCreature.cost;
 
         if (eventData.pointerDrag != null)
         {
-            if (eventData.pointerDrag.tag == "Bullet")
-            {
-                if (!playerController.playerMana.IsValidCard(manaCost)) return; // du mana hay ko
-                playerController.playerMana.UseMana(manaCost);
-                //hủy card, tạm thời để active false, sau làm mộ thì cho xuống mộ
-                eventData.pointerDrag.transform.SetParent(transform, false);
-                eventData.pointerDrag.gameObject.SetActive(false);
-                //card hủy rồi thì sum quái
+            // if (eventData.pointerDrag.tag == "Bullet")
+            // {
+            if (!playerController.playerMana.IsValidCard(manaCost)) return; // du mana hay ko
+            playerController.playerMana.UseMana(manaCost);
+            //hủy card, tạm thời để active false, sau làm mộ thì cho xuống mộ
+            eventData.pointerDrag.transform.SetParent(transform, false);
+            eventData.pointerDrag.gameObject.SetActive(false);
+            //card hủy rồi thì sum quái
 
-                string uniqueName = propOfCreature.pvOwnerId.ToString() + "_" + (System.DateTime.Now.Ticks % 10000).ToString();
-                propOfCreature.objectName = uniqueName;
-                GameObject newCreature = this.creatureSpawner.SpawnWithProp(propOfCreature);
-                newCreature.transform.SetParent(transform, false);
-                boardCtrl.UpdateListCreature();
-                this.RaiseSummonEvent(propOfCreature);
-            }
+            string uniqueName = propOfCreature.pvOwnerId.ToString() + "_" + (System.DateTime.Now.Ticks % 10000).ToString();
+            propOfCreature.objectName = uniqueName;
+            GameObject newCreature = this.creatureSpawner.SpawnWithProp(propOfCreature);
+            newCreature.transform.SetParent(transform, false);
+            boardCtrl.UpdateListCreature();
+            this.RaiseSummonEvent(propOfCreature);
+            // }
 
 
         }

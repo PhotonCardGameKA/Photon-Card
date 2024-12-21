@@ -12,13 +12,13 @@ public class PlayerRename : MonoBehaviour
         {
             player.name = "PlayerIcon" + GameManager.Instance.P1.ViewID.ToString();
             enemy.name = "PlayerIcon" + GameManager.Instance.P2.ViewID.ToString();
-            Debug.LogError(player.name + ":" + enemy.name);
+            // Debug.LogError(player.name + ":" + enemy.name);
         }
         else
         {
             player.name = "PlayerIcon" + GameManager.Instance.P2.ViewID.ToString();
             enemy.name = "PlayerIcon" + GameManager.Instance.P1.ViewID.ToString();
-            Debug.LogError(player.name + ":" + enemy.name);
+            // Debug.LogError(player.name + ":" + enemy.name);
         }
     }
 

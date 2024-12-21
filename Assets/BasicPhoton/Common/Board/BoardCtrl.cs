@@ -10,6 +10,14 @@ public class BoardCtrl : MonoBehaviourPunCallbacks
     [SerializeField] GameObject heroReference;
     [SerializeField] private ReceiveDamageEventHandle receiveDamageEventHandle;
     public GameObject opBoard;
+    public SystemTurnManager turnManager;
+    public void UpdateStateCreature(bool value)
+    {
+        foreach (GameObject creature in creatureRef)
+        {
+            creature.GetComponentInChildren<ArrowDragDrop>().canDrag = value;
+        }
+    }
     public void UpdateListCreature()
     {
         creatureRef.Clear();
@@ -33,6 +41,7 @@ public class BoardCtrl : MonoBehaviourPunCallbacks
     void Awake()
     {
         opBoard = GameObject.Find("DropZoneE");
+        this.turnManager = GameObject.Find("EndTurnButton").GetComponent<SystemTurnManager>();
         if (this.receiveDamageEventHandle != null) return;
         this.receiveDamageEventHandle = GetComponent<ReceiveDamageEventHandle>();
     }
