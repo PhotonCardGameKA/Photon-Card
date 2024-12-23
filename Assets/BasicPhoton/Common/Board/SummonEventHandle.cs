@@ -80,7 +80,8 @@ public class SummonEventHandler : MonoBehaviourPun
     {
         if (photonEvent.Code == (byte)PlayerEvent.Code.SummonCreature)
         {
-
+            TimerManager.Instance.isStop = true;
+            TimerManager.Instance.BonusTime();
             object[] data = (object[])photonEvent.CustomData;
             int currentHp = (int)data[0];
             int maxHp = (int)data[1];
@@ -116,6 +117,7 @@ public class SummonEventHandler : MonoBehaviourPun
 
             newCreature.transform.SetParent(dropZoneEnemy.transform, false);
             this.UpdateListCreature();
+            TimerManager.Instance.isStop = false;
         }
     }
 }

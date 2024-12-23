@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreatureAction : MonoBehaviour
 {
     public CreatureCtrl creatureCtrl;
-    private void Awake()
+    protected virtual void Awake()
     {
         if (this.creatureCtrl != null) return;
         this.creatureCtrl = GetComponentInParent<CreatureCtrl>();
@@ -23,7 +23,7 @@ public class CreatureAction : MonoBehaviour
         if (this.creatureCtrl.creatureProp.IsDead()) Death();
 
     }
-    public void Death()//temp
+    protected virtual void Death()//temp
     {
         transform.parent.gameObject.SetActive(false);
     }

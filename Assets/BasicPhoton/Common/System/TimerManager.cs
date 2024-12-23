@@ -6,16 +6,23 @@ public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance;
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime = 30f;
-    float timeToChangeTurn = 30f;
+    [SerializeField] float remainingTime = 31f;
+    float timeToChangeTurn = 31f;
+    float bonusTime = 3f;
     [SerializeField] SystemTurnManager systemTurnManager;
     private void Awake()
     {
         if (Instance != null) return;
         Instance = this;
     }
+    public bool isStop = false;
+    public void BonusTime()
+    {
+        this.remainingTime += bonusTime;
+    }
     void Update()
     {
+        if (isStop) return;
         if (remainingTime > 0)
         {
 

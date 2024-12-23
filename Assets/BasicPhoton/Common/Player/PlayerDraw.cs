@@ -53,6 +53,7 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
         //if maxcard
         if (playerArea.cardholder.Count == maxCardInHand)
         {
+            AnNotification.Instance.CustomMessage("Your Hand Is Full");
             cardToDraw.transform.SetParent(graveCtrl.cardHolder.transform);
             cardToDraw.gameObject.SetActive(false);
         }

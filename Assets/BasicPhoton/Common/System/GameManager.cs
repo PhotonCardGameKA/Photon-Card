@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] public List<int> playerRef;
     public PlayerRename playerRename;
     public PlayerController yourPlayer;
+
+
+    public GameObject settingScreen;
+    public GameObject confirmLeaveGame;
+
+
+    public GameObject preventerCreatureAttack;
     void Awake()
     {
         // if (playerRename == null) playerRename = GetComponent<PlayerRename>();
@@ -26,7 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Instance = this;
         LoadPlayerInstantiate();
-        Invoke(nameof(this.AddPlayerRef), 1f);
+        Invoke(nameof(this.AddPlayerRef), 2f);
         LoadPhotonCardSpawner();
 
         //do some animation
@@ -102,5 +109,25 @@ public class GameManager : MonoBehaviourPunCallbacks
             //22/12
             photonCardSpawner.EnemyCardUISide();
         }
+    }
+    public void OnClickTurnOnSetting()
+    {
+        settingScreen.SetActive(true);
+    }
+    public void OnClickTurnOffSetting()
+    {
+        settingScreen.SetActive(false);
+    }
+    public void OnClickTurnOnLeaveGame()
+    {
+        confirmLeaveGame.SetActive(true);
+    }
+    public void OnClickTurnOffLeaveGame()
+    {
+        confirmLeaveGame.SetActive(false);
+    }
+    public void ActivePreventerCreature(bool state)
+    {
+        preventerCreatureAttack.SetActive(state);
     }
 }

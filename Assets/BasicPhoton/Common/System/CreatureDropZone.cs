@@ -56,6 +56,11 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     }
     private IEnumerator AttackAnimation(Transform attackingCreature)
     {
+        TimerManager.Instance.isStop = true;
+        TimerManager.Instance.BonusTime();
+
+        GameManager.Instance.ActivePreventerCreature(true);
+
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
         yield return new WaitForSeconds(0.05f);
         // int flag = 0;
@@ -76,7 +81,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         float animationDuration = 0.5f;
         float elapsedTime = 0f;
 
-        // Di chuyển quái vật đến mục tiêu
+
         while (elapsedTime < animationDuration)
         {
             attackingCreature.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / animationDuration);
@@ -86,12 +91,12 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
 
         attackingCreature.position = targetPosition;
 
-        // Tạm dừng ở mục tiêu
+
         yield return new WaitForSeconds(0.2f);
 
         elapsedTime = 0f;
 
-        // Quay lại vị trí ban đầu
+
         while (elapsedTime < animationDuration)
         {
             attackingCreature.position = Vector3.Lerp(targetPosition, originalPosition, elapsedTime / animationDuration);
@@ -107,7 +112,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         yield return new WaitForSeconds(0.05f);
         if (arrow != null && !arrow.gameObject.activeSelf)
             arrow.gameObject.SetActive(true);
-
-
+        TimerManager.Instance.isStop = false;
+        GameManager.Instance.ActivePreventerCreature(false);
     }
 }

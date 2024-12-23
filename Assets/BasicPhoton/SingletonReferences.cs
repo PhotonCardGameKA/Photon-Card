@@ -7,7 +7,7 @@ public class SingletonReferences : MonoBehaviour
     [SerializeField] private MasterManager masterManager;
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
 }

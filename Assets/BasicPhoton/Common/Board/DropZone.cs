@@ -44,9 +44,18 @@ public class DropZone : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-        if (!boardCtrl.turnManager.isMyTurn) return;
+
+        if (!boardCtrl.turnManager.isMyTurn)
+        {
+            AnNotification.Instance.CustomMessage("Not Your Turn");
+            return;
+        }
         if (eventData.pointerDrag.tag != "Bullet") return;
-        if (boardCtrl.creatureRef.Count == maxCreatureValid) return;
+        if (boardCtrl.creatureRef.Count == maxCreatureValid)
+        {
+            AnNotification.Instance.CustomMessage("Board Is Full");
+            return;
+        }
         PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
         int manaCost = propOfCreature.cost;
 
@@ -54,7 +63,14 @@ public class DropZone : MonoBehaviour, IDropHandler
         {
             // if (eventData.pointerDrag.tag == "Bullet")
             // {
-            if (!playerController.playerMana.IsValidCard(manaCost)) return; // du mana hay ko
+            if (!playerController.playerMana.IsValidCard(manaCost))
+            {
+                AnNotification.Instance.CustomMessage("Not Enough Mana");
+                return; // du mana hay ko
+
+            }
+            TimerManager.Instance.isStop = true;
+            TimerManager.Instance.BonusTime();
             playerController.playerMana.UseMana(manaCost);
             //hủy card, tạm thời để active false, sau làm mộ thì cho xuống mộ
             // eventData.pointerDrag.transform.SetParent(transform, false);
@@ -70,7 +86,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             this.RaiseSummonEvent(propOfCreature);
             // }
 
-
+            TimerManager.Instance.isStop = false;
         }
     }
 
