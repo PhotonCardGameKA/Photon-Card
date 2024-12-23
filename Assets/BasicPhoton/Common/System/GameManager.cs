@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Pun.Demo.Cockpit;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -129,5 +130,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void ActivePreventerCreature(bool state)
     {
         preventerCreatureAttack.SetActive(state);
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        AnNotification.Instance.CustomMessage("Your OP Disconnected");
+        WinCondition.Instance.WinProcess();
     }
 }

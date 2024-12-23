@@ -56,17 +56,35 @@ public class WinCondition : MonoBehaviour
         if (enemy.currentHp > 0 && player.currentHp > 0) return;
         if (enemy.currentHp <= 0)
         {
-            isWin = true;
-            isLose = false;
-            TimerManager.Instance.isStop = true;
-            TurnWinScreenOn();
+            // isWin = true;
+            // isLose = false;
+            // TimerManager.Instance.isStop = true;
+            // TurnWinScreenOn();
+            WinProcess();
         }
         if (player.currentHp <= 0)
         {
-            isWin = false;
-            isLose = true;
-            TimerManager.Instance.isStop = true;
-            TurnLoseScreenOn();
+            // isWin = false;
+            // isLose = true;
+            // TimerManager.Instance.isStop = true;
+            // TurnLoseScreenOn();
+            LoseProcess();
         }
+    }
+    public void WinProcess()
+    {
+
+        isWin = true;
+        isLose = false;
+        TimerManager.Instance.isStop = true;
+        TurnWinScreenOn();
+
+    }
+    public void LoseProcess()
+    {
+        isWin = false;
+        isLose = true;
+        TimerManager.Instance.isStop = true;
+        TurnLoseScreenOn();
     }
 }

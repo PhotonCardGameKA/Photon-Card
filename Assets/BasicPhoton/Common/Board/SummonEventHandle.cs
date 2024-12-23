@@ -41,6 +41,7 @@ public class SummonEventHandler : MonoBehaviourPun
     {
         this.LoadCardData();
         this.enemyLocalHand = GameObject.Find("EnemyLocal");
+        UpdateListCreature();
     }
     public Sprite FindSpriteByName(string name)
     {
