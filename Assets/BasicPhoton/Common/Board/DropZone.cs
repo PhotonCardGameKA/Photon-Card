@@ -11,10 +11,13 @@ public class DropZone : MonoBehaviour, IDropHandler
     public GameObject dropZoneEnemy;//(máy1-PZone) (máy2-EZone)
     public BoardCtrl boardCtrl;
     public PlayerController playerController;
+    public GraveCtrl graveCtrl;
+    public int maxCreatureValid = 7;
     private void Awake()
     {
         this.LoadComponents();
         StartCoroutine(WaitForController());
+        graveCtrl = GameObject.Find("GraveP").GetComponent<GraveCtrl>();
     }
     IEnumerator WaitForController()
     {
@@ -43,6 +46,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     {
         if (!boardCtrl.turnManager.isMyTurn) return;
         if (eventData.pointerDrag.tag != "Bullet") return;
+        if (boardCtrl.creatureRef.Count == maxCreatureValid) return;
         PhotonCardProp propOfCreature = eventData.pointerDrag.transform.GetComponentInChildren<PhotonCardProp>();
         int manaCost = propOfCreature.cost;
 
@@ -53,8 +57,9 @@ public class DropZone : MonoBehaviour, IDropHandler
             if (!playerController.playerMana.IsValidCard(manaCost)) return; // du mana hay ko
             playerController.playerMana.UseMana(manaCost);
             //hủy card, tạm thời để active false, sau làm mộ thì cho xuống mộ
-            eventData.pointerDrag.transform.SetParent(transform, false);
-            eventData.pointerDrag.gameObject.SetActive(false);
+            // eventData.pointerDrag.transform.SetParent(transform, false);
+            // eventData.pointerDrag.gameObject.SetActive(false);
+            graveCtrl.AddCardToGrave(eventData.pointerDrag.gameObject);
             //card hủy rồi thì sum quái
 
             string uniqueName = propOfCreature.pvOwnerId.ToString() + "_" + (System.DateTime.Now.Ticks % 10000).ToString();

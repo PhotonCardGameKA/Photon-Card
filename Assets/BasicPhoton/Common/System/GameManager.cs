@@ -97,7 +97,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else
         if (!isMyTurn)
-        {
+        { //22/12
+
+            //22/12
             photonCardSpawner.EnemyCardUISide();
         }
     }

@@ -1,3 +1,4 @@
+using System.Threading;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -59,6 +60,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void ChangeTurnState()
     {
+        TimerManager.Instance.ResetTime();
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2) return;
         isMyTurn = !isMyTurn;
 

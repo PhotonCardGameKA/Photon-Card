@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BoardCtrl : MonoBehaviourPunCallbacks
 {
-    [SerializeField] List<GameObject> creatureRef;
+    [SerializeField] public List<GameObject> creatureRef;
     [SerializeField] GameObject heroReference;
     [SerializeField] private ReceiveDamageEventHandle receiveDamageEventHandle;
     public GameObject opBoard;
