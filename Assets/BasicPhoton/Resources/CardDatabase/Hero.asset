@@ -18,7 +18,7 @@ MonoBehaviour:
   maxHp: 30
   currentAtk: 1
   maxAtk: 1
-  cost: 0
+  cost: 10
   usedThisTurn: 0
   description: 
   tribe: 

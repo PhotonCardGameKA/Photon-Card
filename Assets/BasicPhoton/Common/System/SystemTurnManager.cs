@@ -9,6 +9,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
     public Button changeTurnButton;
     BoardCtrl boardCtrl;
     public bool isMyTurn = false;//local
+    [SerializeField] CanvasGroup canvasGroup;
     void Awake()
     {
         boardCtrl = GameObject.Find("DropZoneP").GetComponent<BoardCtrl>();
@@ -46,12 +47,13 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("luot cua ban");
             changeTurnButton.interactable = true;
-
+            canvasGroup.alpha = 1;
         }
         else
         {
             Debug.Log("luot doi thu");
             changeTurnButton.interactable = false;
+            canvasGroup.alpha = 0.1f;
             // DrawOnChangeTurn();
 
         }
