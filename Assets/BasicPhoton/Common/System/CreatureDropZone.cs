@@ -56,17 +56,14 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     }
     private IEnumerator AttackAnimation(Transform attackingCreature)
     {
-        TimerManager.Instance.isStop = true;
+        // TimerManager.Instance.isStop = true;
         TimerManager.Instance.BonusTime();
 
-        GameManager.Instance.ActivePreventerCreature(true);
+        // GameManager.Instance.ActivePreventerCreature(true);
 
         ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
         yield return new WaitForSeconds(0.05f);
-        // int flag = 0;
-        // if (arrow != null)
-        // {
-        //     flag = 1;
+
         if (arrow != null)
         {
             arrow.canDrag = false;
@@ -112,7 +109,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
         yield return new WaitForSeconds(0.05f);
         if (arrow != null && !arrow.gameObject.activeSelf)
             arrow.gameObject.SetActive(true);
-        TimerManager.Instance.isStop = false;
-        GameManager.Instance.ActivePreventerCreature(false);
-    }
+        // TimerManager.Instance.isStop = false;
+        // GameManager.Instance.ActivePreventerCreature(false);
+    }//loi mang chan
 }

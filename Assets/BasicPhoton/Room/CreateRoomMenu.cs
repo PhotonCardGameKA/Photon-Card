@@ -23,6 +23,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
             AnNotification.Instance.CustomMessage("NOT CONNECTED TO SERVER");
             return;
         }
+
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
         roomOptions.BroadcastPropsChangeToAll = true;
@@ -40,6 +41,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        AnNotification.Instance.CustomMessage("CREATE ROOM FAILED");
         Debug.Log("created room failed" + message, this);
     }
 }

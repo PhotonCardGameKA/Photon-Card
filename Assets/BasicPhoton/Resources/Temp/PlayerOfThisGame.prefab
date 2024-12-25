@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 6233234624092776915}
   - component: {fileID: 8334694618260750693}
   - component: {fileID: 8193585579693650168}
+  - component: {fileID: 8107519912622123187}
   m_Layer: 5
   m_Name: PlayerManaUI
   m_TagString: Untagged
@@ -315,6 +316,27 @@ MonoBehaviour:
   currentManaText: {fileID: 2554379297694041837}
   unlockedManaText: {fileID: 2918409254871577885}
   playerController: {fileID: 6601939946894920960}
+--- !u!95 &8107519912622123187
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676902343044791675}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e2bdd1aed651ff479d7b9d480887494, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4728190329023678446
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -77,4 +78,34 @@ public class LobbyManager : MonoBehaviour
 
         TurnOffLoadingScreen();
     }
+    public Text text;
+    public void OnPlayerChangeName()
+    {
+        PhotonNetwork.LocalPlayer.NickName = text.text;
+    }
+    #region Setting
+    [Header("Setting")]
+    public GameObject SettingScreen;
+    public void OnClick_TurnOnSettingScreen()
+    {
+        SettingScreen.SetActive(true);
+    }
+    public void OnClick_TurnOffSettingScreen()
+    {
+        SettingScreen.SetActive(false);
+    }
+    public void OnClick_QuitGame()
+    {
+        Application.Quit();
+    }
+    public GameObject confirmQuitGame;
+    public void OnClick_TurnOnQuitScreen()
+    {
+        confirmQuitGame.SetActive(true);
+    }
+    public void OnClick_TurnOffQuitScreen()
+    {
+        confirmQuitGame.SetActive(false);
+    }
+    #endregion
 }
