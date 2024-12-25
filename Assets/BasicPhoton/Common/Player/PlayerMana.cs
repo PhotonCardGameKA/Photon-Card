@@ -1,3 +1,6 @@
+using Photon.Pun;
+using UnityEditor;
+
 using UnityEngine;
 
 public class PlayerMana : MonoBehaviour
@@ -6,10 +9,38 @@ public class PlayerMana : MonoBehaviour
     public int unlockedMana = 1;
     public int maxMana = 10;
     public PlayerController playerController;
+    public GameObject manaPipHolder;
+    public GameObject pipPrefab;
+    public void AddPip()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            int childCount = 0;
+
+
+            foreach (Transform child in manaPipHolder.transform)
+            {
+                if (childCount < 2)
+                {
+                    child.gameObject.SetActive(false);
+                    childCount++;
+                }
+            }
+        }
+    }
+    public void UsePip()
+    {
+        if (this.currentMana < maxMana) currentMana += 1;
+        else currentMana = maxMana;
+
+
+        playerController.playerManaUI.SetUI(currentMana, unlockedMana);
+    }
     private void Awake()
     {
         if (this.playerController != null) return;
         this.playerController = GetComponentInParent<PlayerController>();
+        AddPip();
     }
     public void UnlockMana(int amount)
     {

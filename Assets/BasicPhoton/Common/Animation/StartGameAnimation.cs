@@ -101,6 +101,7 @@ public class StartGameAnimation : MonoBehaviour
 
                         gameObject.SetActive(false);
                         TimerManager.Instance.isStop = false;
+                        GameManager.Instance.DrawAtStartGame();
                     });
                 }
             });

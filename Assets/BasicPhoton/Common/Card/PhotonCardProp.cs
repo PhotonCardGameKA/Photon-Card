@@ -50,8 +50,16 @@ public class PhotonCardProp : MonoBehaviour
     {
         if (this.photonCardCtrl != null) return;
         this.photonCardCtrl = GetComponentInParent<PhotonCardCtrl>();
-        this.photonCardUI = photonCardCtrl.transform.GetComponentInChildren<PhotonCardUI>();
-        this.SetProp(photonCardCtrl.cardInfo);
+        if (this.photonCardCtrl == null)
+        {
+            Debug.Log("null");
+        }
+        else
+        {
+            this.photonCardUI = photonCardCtrl.transform.GetComponentInChildren<PhotonCardUI>();
+            this.SetProp(photonCardCtrl.cardInfo);
+        }
+
     }
 
 }
