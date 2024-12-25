@@ -111,6 +111,35 @@ public class GameManager : MonoBehaviourPunCallbacks
             photonCardSpawner.EnemyCardUISide();
         }
     }
+    public void DrawAtStartGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P1.ViewID);
+                photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P2.ViewID);
+            }
+            if (P1.IsMine) photonView.RPC(nameof(this.DrawNetwork), RpcTarget.Others, P1.ViewID);
+            else photonView.RPC(nameof(this.DrawNetwork), RpcTarget.Others, P2.ViewID);
+        }//chu phong di truoc thi duoc them 1 la
+
+
+    }
+    [PunRPC]
+    public void DrawNetwork(int pvId)
+    {
+        PhotonView pvTemp = PhotonView.Find(pvId);
+        if (pvTemp.IsMine)
+        {
+            PlayerManager pmTemp = pvTemp.gameObject.GetComponent<PlayerManager>();
+            pmTemp.playerController.PlayerDraw.DrawLocal();
+        }
+        else
+        {
+            photonCardSpawner.EnemyCardUISide();
+        }
+    }
     public void OnClickTurnOnSetting()
     {
         settingScreen.SetActive(true);

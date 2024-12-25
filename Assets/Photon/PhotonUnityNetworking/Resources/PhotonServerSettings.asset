@@ -64,6 +64,7 @@ MonoBehaviour:
   - RPC_SyncDeck
   - RPC_SendDeck
   - RPC_SyncOp
+  - DrawNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

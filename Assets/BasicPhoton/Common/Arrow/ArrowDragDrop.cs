@@ -9,6 +9,7 @@ public class ArrowDragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     [SerializeField] GameObject redArrow;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
+    public GameObject attackAnim;
 
     private Vector2 originalPosition;
     public bool canDrag = false;

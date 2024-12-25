@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class CreatureAction : MonoBehaviour
@@ -25,6 +26,19 @@ public class CreatureAction : MonoBehaviour
     }
     protected virtual void Death()//temp
     {
-        transform.parent.gameObject.SetActive(false);
+        CanvasGroup canvasGroup = transform.parent.gameObject.GetComponent<CanvasGroup>();
+        if (canvasGroup != null)
+        {
+            canvasGroup.DOFade(0f, 1f)
+                .OnComplete(() =>
+                {
+                    canvasGroup.gameObject.SetActive(false);
+                });
+        }
+        else
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
+
     }
 }

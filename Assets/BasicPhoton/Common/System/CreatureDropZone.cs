@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
             if (eventData.pointerDrag.transform.parent.GetComponentInChildren<CreatureProp>().pvOwnerId == creatureCtrl.creatureProp.pvOwnerId) return;
             if (eventData.pointerDrag.CompareTag("Arrow"))
             {
-                StartCoroutine(AttackAnimation(eventData.pointerDrag.transform.parent.transform));
+                AttackAnimation(eventData.pointerDrag.transform.parent.transform);
                 this.BothTakeDamage_RaiseEvent(eventData.pointerDrag.transform.GetComponentInParent<CreatureCtrl>(), creatureCtrl);
 
             }
@@ -52,64 +53,57 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     }
     public void publicAttackAnimation(Transform attackingCreature)
     {
-        StartCoroutine(AttackAnimation(attackingCreature));
+        AttackAnimation(attackingCreature);
     }
-    private IEnumerator AttackAnimation(Transform attackingCreature)
+    public void AttackAnimation(Transform attackingCreature)
     {
-        // TimerManager.Instance.isStop = true;
+        GameManager.Instance.ActivePreventerCreature(true);
         TimerManager.Instance.BonusTime();
+        DOVirtual.DelayedCall(0.05f, () =>
+   {
+       ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
+       if (arrow != null)
+       {
+           arrow.canDrag = false;
+           arrow.gameObject.SetActive(false);
+       }
 
-        // GameManager.Instance.ActivePreventerCreature(true);
+       Vector3 originalPosition = attackingCreature.position;
+       Vector3 targetPosition = transform.position;
 
-        ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
-        yield return new WaitForSeconds(0.05f);
-
-        if (arrow != null)
-        {
-            arrow.canDrag = false;
-            arrow.gameObject.SetActive(false);
-
-        }
-
-        // }
-        Vector3 originalPosition = attackingCreature.position;
-        Vector3 targetPosition = transform.position;
-
-        float animationDuration = 0.5f;
-        float elapsedTime = 0f;
+       float animationDuration = 0.5f;
 
 
-        while (elapsedTime < animationDuration)
-        {
-            attackingCreature.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / animationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+       attackingCreature.DOMove(targetPosition, animationDuration)
+           .SetEase(Ease.InOutQuad)
+           .OnComplete(() =>
+           {
+               CreatureAnimRef animRef = attackingCreature.GetComponent<CreatureAnimRef>();
+               animRef.attack1Anim.SetActive(true);
+               animRef.attack2Anim.SetActive(true);
+               DOVirtual.DelayedCall(0.2f, () =>
+               {
+                   attackingCreature.DOMove(originalPosition, animationDuration)
+                       .SetEase(Ease.InOutQuad)
+                       .OnComplete(() =>
+                       {
+                           DOVirtual.DelayedCall(0.05f, () =>
+                           {
+                               Debug.Log("Damage dealt to enemy!");
+                               BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
 
-        attackingCreature.position = targetPosition;
 
-
-        yield return new WaitForSeconds(0.2f);
-
-        elapsedTime = 0f;
-
-
-        while (elapsedTime < animationDuration)
-        {
-            attackingCreature.position = Vector3.Lerp(targetPosition, originalPosition, elapsedTime / animationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        attackingCreature.position = originalPosition;
-
-        // Gây damage (tạm thời chỉ log ra)
-        Debug.Log("Damage dealt to enemy!");
-        BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
-        yield return new WaitForSeconds(0.05f);
-        if (arrow != null && !arrow.gameObject.activeSelf)
-            arrow.gameObject.SetActive(true);
-        // TimerManager.Instance.isStop = false;
-        // GameManager.Instance.ActivePreventerCreature(false);
+                               if (arrow != null && !arrow.gameObject.activeSelf)
+                               {
+                                   arrow.gameObject.SetActive(true);
+                               }
+                               animRef.attack1Anim.SetActive(false);
+                               animRef.attack2Anim.SetActive(false);
+                               GameManager.Instance.ActivePreventerCreature(false);
+                           });
+                       });
+               });
+           });
+   });
     }//loi mang chan
 }

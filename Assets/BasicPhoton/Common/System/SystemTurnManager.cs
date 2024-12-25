@@ -19,6 +19,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            canvasGroup.alpha = 0.1f;
             InitSetTurn(null);
         }
         // for (int i = 0; i < 4; i++) Invoke(nameof(this.OnNextTurnButtonClicked), 0.5f);
