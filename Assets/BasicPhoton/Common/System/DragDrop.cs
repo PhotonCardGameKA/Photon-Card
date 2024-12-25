@@ -8,7 +8,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     [SerializeField] private Canvas canvas;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-
+    public SystemTurnManager turnManager;
     private Vector2 originalPosition;
     private Transform originalParent;
 
@@ -17,9 +17,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        turnManager = GameObject.Find("EndTurnButton").GetComponent<SystemTurnManager>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        // if (!turnManager.isMyTurn) return;
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
 
@@ -29,11 +31,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
+        // if (!turnManager.isMyTurn) return;
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // if (!turnManager.isMyTurn) return;
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -50,7 +54,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("1");
+        // Debug.Log("1");
     }
 
     private void DisableDrag()

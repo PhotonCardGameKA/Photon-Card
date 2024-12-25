@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Pun.Demo.Cockpit;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,8 +16,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerInstantiateObj;
     public PhotonCardSpawner photonCardSpawner;
     [SerializeField] public List<int> playerRef;
+    public PlayerRename playerRename;
+    public PlayerController yourPlayer;
+
+
+    public GameObject settingScreen;
+    public GameObject confirmLeaveGame;
+
+
+    public GameObject preventerCreatureAttack;
     void Awake()
     {
+        // if (playerRename == null) playerRename = GetComponent<PlayerRename>();
         if (Instance != null)
         {
             Debug.LogError("Duplicate singleton");
@@ -25,6 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         LoadPlayerInstantiate();
         Invoke(nameof(this.AddPlayerRef), 2f);
         LoadPhotonCardSpawner();
+
         //do some animation
     }
     void AddPlayerRef()
@@ -36,6 +48,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         p1Manager = P1.gameObject.GetComponent<PlayerManager>();
         P2 = PhotonView.Find(instantiateEndTurn.playerRef[1]);
         p2Manager = P2.gameObject.GetComponent<PlayerManager>();
+        playerRename.Rename();
+        // yourPlayer = playerRename.player.GetComponent<PlayerController>();
+        WaitForPlayerController();
+    }
+    void WaitForPlayerController()
+    {
+        int yourPv;
+        if (P1.IsMine) yourPv = P1.ViewID;
+        else yourPv = P2.ViewID;
+        GameObject playerObject = PhotonView.Find(yourPv).gameObject;
+        this.yourPlayer = playerObject.GetComponent<PlayerController>();
     }
     void LoadPlayerInstantiate()
     {
@@ -70,6 +93,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (isMyTurn)
         {
+            yourPlayer.playerMana.RefreshAtYourTurn();
             if (P1.IsMine)
             {
                 p1Manager.playerController.PlayerDraw.DrawLocal();
@@ -81,8 +105,36 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else
         if (!isMyTurn)
-        {
+        { //22/12
+
+            //22/12
             photonCardSpawner.EnemyCardUISide();
         }
+    }
+    public void OnClickTurnOnSetting()
+    {
+        settingScreen.SetActive(true);
+    }
+    public void OnClickTurnOffSetting()
+    {
+        settingScreen.SetActive(false);
+    }
+    public void OnClickTurnOnLeaveGame()
+    {
+        confirmLeaveGame.SetActive(true);
+    }
+    public void OnClickTurnOffLeaveGame()
+    {
+        confirmLeaveGame.SetActive(false);
+    }
+    public void ActivePreventerCreature(bool state)
+    {
+        preventerCreatureAttack.SetActive(state);
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        AnNotification.Instance.CustomMessage("Your OP Disconnected");
+        WinCondition.Instance.WinProcess();
     }
 }

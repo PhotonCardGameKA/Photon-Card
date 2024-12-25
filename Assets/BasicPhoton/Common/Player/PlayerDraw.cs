@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDraw : MonoBehaviourPunCallbacks
@@ -10,7 +11,8 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
     [SerializeField] protected GameObject cardPrefab;
     [SerializeField] protected PlayerHandArea playerArea;
     // [SerializeField] List<GameObject> listTemp;
-    GameObject tempCard;
+    GraveCtrl graveCtrl;
+    int maxCardInHand = 7;
 
     IEnumerator WaitForPlayerController()
     {
@@ -29,6 +31,8 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
     void Awake()
     {
         this.playerController = GetComponentInParent<PlayerController>();
+        if (graveCtrl != null) return;
+        graveCtrl = GameObject.Find("GraveP").GetComponent<GraveCtrl>();
     }
     void Start()
     {
@@ -37,6 +41,7 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
 
     public void DrawLocal()
     {
+
         GameObject cardToDraw = Instantiate(cardPrefab);
         cardToDraw.transform.SetParent(playerArea.yourHandPrefab.transform, false);
         //set info to card draw
@@ -45,8 +50,24 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
         cardToDraw.GetComponent<PhotonCardCtrl>().cardInfo = cardInfo;
         cardToDraw.GetComponentInChildren<PhotonCardUI>().InitUI();
 
-        playerArea.cardholder.Add(cardToDraw);
+        //if maxcard
+        if (playerArea.cardholder.Count == maxCardInHand)
+        {
+            AnNotification.Instance.CustomMessage("Your Hand Is Full");
+            cardToDraw.transform.SetParent(graveCtrl.cardHolder.transform);
+            cardToDraw.gameObject.SetActive(false);
+        }
+        // playerArea.cardholder.Add(cardToDraw);
+        UpdateListHolder();
+        graveCtrl.UpdateList();
     }
-
+    public void UpdateListHolder()
+    {
+        playerArea.cardholder.Clear();
+        foreach (Transform child in playerArea.transform)
+        {
+            playerArea.cardholder.Add(child.gameObject);
+        }
+    }
 
 }

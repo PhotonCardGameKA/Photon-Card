@@ -1,3 +1,4 @@
+using System.Threading;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine.UI;
 public class SystemTurnManager : MonoBehaviourPunCallbacks
 {
     public Button changeTurnButton;
-    PlayerController playerController;
+    BoardCtrl boardCtrl;
     public bool isMyTurn = false;//local
+    [SerializeField] CanvasGroup canvasGroup;
     void Awake()
     {
+        boardCtrl = GameObject.Find("DropZoneP").GetComponent<BoardCtrl>();
         if (PhotonNetwork.IsMasterClient)
         {
             InitSetTurn(PhotonNetwork.LocalPlayer);//chu phong di truoc
@@ -18,7 +21,7 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
         {
             InitSetTurn(null);
         }
-
+        // for (int i = 0; i < 4; i++) Invoke(nameof(this.OnNextTurnButtonClicked), 0.5f);
 
     }
     private void InitSetTurn(Player player)
@@ -39,25 +42,30 @@ public class SystemTurnManager : MonoBehaviourPunCallbacks
     private void ChangeButtonState()
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2) return;
+        boardCtrl.UpdateStateCreature(isMyTurn);
         if (isMyTurn)
         {
             Debug.Log("luot cua ban");
             changeTurnButton.interactable = true;
-
+            canvasGroup.alpha = 1;
         }
         else
         {
             Debug.Log("luot doi thu");
             changeTurnButton.interactable = false;
+            canvasGroup.alpha = 0.1f;
             // DrawOnChangeTurn();
+
         }
         DrawOnChangeTurn();
     }
     [PunRPC]
     private void ChangeTurnState()
     {
+        TimerManager.Instance.ResetTime();
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2) return;
         isMyTurn = !isMyTurn;
+
     }
 
     public void OnNextTurnButtonClicked()

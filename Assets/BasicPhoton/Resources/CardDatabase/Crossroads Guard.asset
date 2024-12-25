@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2235e0f7884e58343a3bed949169544c, type: 3}
+  m_Name: Crossroads Guard
+  m_EditorClassIdentifier: 
+  iconImage: {fileID: 21300000, guid: 1dfc22ec1bdcd3144ba225a82560bccd, type: 3}
+  cardName: Crossroads Guard
+  currentHp: 6
+  maxHp: 6
+  currentAtk: 3
+  maxAtk: 3
+  cost: 4
+  usedThisTurn: 0
+  description: Taunt. All enemies must target Crossroads Guard
+  tribe: Guardian

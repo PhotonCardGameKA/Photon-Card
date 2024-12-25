@@ -3,7 +3,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class RoomListing : MonoBehaviour
+public class RoomListing : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Text roomText;
     public RoomInfo RoomInfo { get; private set; }
@@ -16,5 +16,9 @@ public class RoomListing : MonoBehaviour
     public void Onclick_Button()
     {
         PhotonNetwork.JoinRoom(RoomInfo.Name);
+    }
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        AnNotification.Instance.CustomMessage("ROOM IS FULL");
     }
 }

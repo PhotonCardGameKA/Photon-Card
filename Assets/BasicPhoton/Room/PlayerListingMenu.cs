@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
 using Photon.Pun.Demo.Cockpit;
 using Photon.Realtime;
@@ -38,8 +39,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private void SetReadyUp(bool state)
     {
         _ready = state;
-        if (_ready) _readyUpText.text = "R";
-        else _readyUpText.text = "N";
+        if (_ready) _readyUpText.text = "Ready";
+        else _readyUpText.text = "Not Ready";
     }
     public void FirstInitialize(RoomCanvases canvases)
     {
@@ -102,15 +103,31 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     public void OnClick_StartGame()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            AnNotification.Instance.CustomMessage("YOU ARE NOT MASTERCLIENT");
+            return;
+        }
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        {
+            AnNotification.Instance.CustomMessage("NOT ENOUGH PLAYERS IN THE ROOM");
+            return;
+        }
         if (PhotonNetwork.IsMasterClient)
         {
 
             for (int i = 0; i < _listing.Count; i++)
             {
                 if (_listing[i].Player == PhotonNetwork.LocalPlayer) continue;
-                if (!_listing[i].Ready) return;
+                if (!_listing[i].Ready)
+                {
+                    AnNotification.Instance.CustomMessage("WAITING FOR OTHER PLAYERS TO GET READY");
+                    return;
+                }
             }
-
+            ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
+            _myCustomProperties["OpponentName"] = PhotonNetwork.PlayerListOthers.FirstOrDefault().NickName;
+            PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel(1);
@@ -123,6 +140,11 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         {
             SetReadyUp(!_ready);
             _photonView.RPC("RPC_ChangeReadyState", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer, _ready);
+        }
+        else
+        {
+            AnNotification.Instance.CustomMessage("YOU ARE THE HOST AND DON'T NEED TO READY UP");
+            return;
         }
     }
 

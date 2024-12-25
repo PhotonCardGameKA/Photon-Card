@@ -33,9 +33,9 @@ public class ReceiveDamageEventHandle : MonoBehaviourPun
             // Debug.LogError("Attacking Cre: " + enemyAttackName);
             // Debug.LogError("Suffering Cre: " + creatureSufferName);
             GameObject enemyCreatureAttack = boardCtrl.opBoard.GetComponent<SummonEventHandler>().FindEnemyCreature(enemyAttackName);
-            // if (enemyCreatureAttack == null) Debug.LogError("Khong tim thay quai doi thu");
+            if (enemyCreatureAttack == null) Debug.LogError("Khong tim thay quai doi thu");
             GameObject allyCreatureSuffer = boardCtrl.FindAllyCreature(creatureSufferName);
-            // if (allyCreatureSuffer == null) Debug.LogError("khong tim thay quai ban than");
+            if (allyCreatureSuffer == null) Debug.LogError("khong tim thay quai ban than");
             //bo sung logic
             CreatureDropZone allyZone = allyCreatureSuffer.GetComponentInChildren<CreatureDropZone>();
             allyZone.publicAttackAnimation(enemyCreatureAttack.transform);

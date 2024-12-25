@@ -18,10 +18,12 @@ public class CurrentRoomCanvas : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        LobbyManager.Instance.OnLoadingRoomScreen();
     }
     public void Hide()
     {
         gameObject.SetActive(false);
+        LobbyManager.Instance.OnLoadingLobbyScreen();
     }
 }
 

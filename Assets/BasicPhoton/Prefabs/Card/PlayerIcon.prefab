@@ -245,6 +245,7 @@ RectTransform:
   - {fileID: 8059659122493445159}
   - {fileID: 6741948977308947027}
   - {fileID: 8664700004942085937}
+  - {fileID: 5238077107760047227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureProp: {fileID: 1935177902818572110}
   creatureUI: {fileID: 8820150537516339929}
+  creatureAction: {fileID: 8302627031956514501}
 --- !u!1 &1850830048033907579
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +485,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2340238991018105885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5238077107760047227}
+  - component: {fileID: 8302627031956514501}
+  m_Layer: 6
+  m_Name: PlayerAction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5238077107760047227
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340238991018105885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6986314560717948218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8302627031956514501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340238991018105885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e463e95d0e35e254cb90a391c9aca335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureCtrl: {fileID: 4058010697193104223}
 --- !u!1 &2390206367654927548
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +950,8 @@ MonoBehaviour:
   creatureCtrl: {fileID: 4058010697193104223}
   photonCardProp: {fileID: 0}
   creatureUI: {fileID: 8820150537516339929}
+  pvOwnerId: 0
+  pvOPId: 0
   currentHp: 30
   maxHp: 30
   currentAtk: 1
