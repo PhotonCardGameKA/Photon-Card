@@ -742,7 +742,6 @@ MonoBehaviour:
   playerController: {fileID: 6601939946894920960}
   cardPrefab: {fileID: 7677954462705160159, guid: 796bbce7be1eb4a478c8ecede5ecb60a, type: 3}
   playerArea: {fileID: 4073326154220227362}
-  isOutOfCard: 0
 --- !u!114 &4633930964458387434
 MonoBehaviour:
   m_ObjectHideFlags: 0
