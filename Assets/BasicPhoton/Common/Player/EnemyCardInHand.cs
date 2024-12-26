@@ -5,6 +5,17 @@ public class EnemyCardInHand : MonoBehaviour
 {
     public List<GameObject> cardHolder;
     public int maxCardInHand = 7;
+    [SerializeField] PhotonCardSpawner photonCardSpawner;
+
+    private void Awake()
+    {
+        this.LoadCardSpawner();
+    }
+    void LoadCardSpawner()
+    {
+        if (photonCardSpawner != null) return;
+        photonCardSpawner = transform.GetComponent<PhotonCardSpawner>();
+    }
     public void UpdateList()
     {
         cardHolder.Clear();
@@ -19,7 +30,9 @@ public class EnemyCardInHand : MonoBehaviour
     }
     public void RemoveOneCard()
     {
-        cardHolder[0].SetActive(false);
+        GameObject tmp = cardHolder[0];
+        tmp.SetActive(false);
+        photonCardSpawner.ReturnToPool(tmp);
         UpdateList();
     }
 }

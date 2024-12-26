@@ -742,6 +742,7 @@ MonoBehaviour:
   playerController: {fileID: 6601939946894920960}
   cardPrefab: {fileID: 7677954462705160159, guid: 796bbce7be1eb4a478c8ecede5ecb60a, type: 3}
   playerArea: {fileID: 4073326154220227362}
+  isOutOfCard: 0
 --- !u!114 &4633930964458387434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1368,6 +1373,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1471,6 +1480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1572,6 +1585,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1675,6 +1692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1777,6 +1798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1878,6 +1903,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2095,6 +2124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2196,6 +2229,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2299,6 +2336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2400,6 +2441,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2677,6 +2722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2779,6 +2828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2880,6 +2933,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3187,6 +3244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3288,6 +3349,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3391,6 +3456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3493,6 +3562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3594,6 +3667,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3866,6 +3943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3967,6 +4048,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4070,6 +4155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4171,6 +4260,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4274,6 +4367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckUnit (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4375,6 +4472,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4748,6 +4849,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUnit (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
