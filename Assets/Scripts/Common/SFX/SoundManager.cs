@@ -34,6 +34,12 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    bool isMute = false;
+    public void OnClickMute()
+    {
+        isMute = !isMute;
+        AudioListener.volume = isMute ? 0 : 1;
+    }
     private void Start()
     {
         bgAudioSource = bgSoundHolder.GetComponent<AudioSource>();

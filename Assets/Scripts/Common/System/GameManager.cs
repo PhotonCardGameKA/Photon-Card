@@ -127,6 +127,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     }
+    bool isMute = false;
+    public void OnClickMute()
+    {
+        isMute = !isMute;
+        AudioListener.volume = isMute ? 0 : 1;
+    }
     [PunRPC]
     public void DrawNetwork(int pvId)
     {
