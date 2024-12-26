@@ -11,6 +11,7 @@ public class RandomCustomPropertyGenerator : MonoBehaviour
 
     public void OnClick_Button()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         SetCustomNumber();
     }
     private void SetCustomNumber()

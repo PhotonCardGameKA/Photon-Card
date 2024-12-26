@@ -1269,6 +1269,7 @@ GameObject:
   - component: {fileID: 467922280712218243}
   - component: {fileID: 2298263126200727169}
   - component: {fileID: 8995094013970335371}
+  - component: {fileID: 5252615841630497894}
   m_Layer: 6
   m_Name: CreatureIcon
   m_TagString: CreaturePlayer
@@ -1345,6 +1346,18 @@ MonoBehaviour:
   attack2Anim: {fileID: 3180349849355050536}
   summonAnim: {fileID: 5151912206040305611}
   deathAnim: {fileID: 0}
+--- !u!225 &5252615841630497894
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597958618941153720}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4903734887141955385
 GameObject:
   m_ObjectHideFlags: 0

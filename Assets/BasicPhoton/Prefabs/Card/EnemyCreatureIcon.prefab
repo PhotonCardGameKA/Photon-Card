@@ -1407,7 +1407,7 @@ GameObject:
   - component: {fileID: 3253963433718095169}
   - component: {fileID: 745203899258683118}
   - component: {fileID: 7673804572384708098}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: AttackAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: 2902928840501856925}
   - component: {fileID: 188332182437922654}
   - component: {fileID: 2586336609608657138}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: AttackAnim (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

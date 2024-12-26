@@ -9164,6 +9164,7 @@ GameObject:
   - component: {fileID: 820984046214811847}
   - component: {fileID: 8659299619083096090}
   - component: {fileID: 8659299619083096091}
+  - component: {fileID: 8659299619083096092}
   m_Layer: 6
   m_Name: PlayerIconE1
   m_TagString: EnemyCreature
@@ -9866,6 +9867,18 @@ MonoBehaviour:
   attack2Anim: {fileID: 1301999048}
   summonAnim: {fileID: 1578008553}
   deathAnim: {fileID: 0}
+--- !u!225 &8659299619083096092
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6579466372656838323}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!222 &8702686453141145212
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10057,6 +10070,7 @@ GameObject:
   - component: {fileID: 2537297635027076176}
   - component: {fileID: 8351433586475091316}
   - component: {fileID: 9159211240839694551}
+  - component: {fileID: 9159211240839694552}
   m_Layer: 6
   m_Name: PlayerIconE
   m_TagString: CreaturePlayer
@@ -10080,6 +10094,18 @@ MonoBehaviour:
   attack2Anim: {fileID: 1035155306}
   summonAnim: {fileID: 275772345}
   deathAnim: {fileID: 0}
+--- !u!225 &9159211240839694552
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159211240839694550}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!222 &9177296389342069435
 CanvasRenderer:
   m_ObjectHideFlags: 0

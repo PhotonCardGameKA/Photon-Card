@@ -45,11 +45,12 @@ public class WinCondition : MonoBehaviour
     void TurnWinScreenOn()
     {
         winScreen.SetActive(true);
-
+        SoundManager.Instance.PlaySound("victory");
     }
     void TurnLoseScreenOn()
     {
         loseScreen.SetActive(true);
+        SoundManager.Instance.PlaySound("defeat");
     }
     public void CheckHp()//regular win && lose
     {

@@ -8,6 +8,9 @@ public class LobbyManager : MonoBehaviour
     public static LobbyManager Instance;
     public GameObject loadingScreen;
     public float fadeDuration = 1.5f;
+    public GameObject forceQuitButton;
+    public GameObject timeOutButton;
+    public GameObject forceQuitImg;
     void Awake()
     {
         if (Instance != null)
@@ -15,12 +18,34 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Duplicate");
         }
         Instance = this;
+        SoundManager.Instance.PlaySound("BgLobby");
         StartCoroutine(CheckScreen());
+    }
+    public void forceQuitOn()
+    {
+        forceQuitImg.SetActive(true);
+        forceQuitButton.SetActive(true);
+        timeOutButton.SetActive(true);
+    }
+    public void forceQuitOff()
+    {
+        SoundManager.Instance.PlaySound("UIClick");
+        forceQuitImg.SetActive(false);
+        forceQuitButton.SetActive(false);
+        timeOutButton.SetActive(false);
     }
     IEnumerator CheckScreen()
     {
+        int countTimeTemp = 0;
         while (!PhotonNetwork.InLobby)
         {
+            yield return new WaitForSeconds(1f);
+            countTimeTemp++;
+            if (countTimeTemp == 20)
+            {
+                forceQuitOn();
+                countTimeTemp = 0;
+            }
             yield return null;
         }
         StartCoroutine(FadeOut());
@@ -88,23 +113,28 @@ public class LobbyManager : MonoBehaviour
     public GameObject SettingScreen;
     public void OnClick_TurnOnSettingScreen()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         SettingScreen.SetActive(true);
     }
     public void OnClick_TurnOffSettingScreen()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         SettingScreen.SetActive(false);
     }
     public void OnClick_QuitGame()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         Application.Quit();
     }
     public GameObject confirmQuitGame;
     public void OnClick_TurnOnQuitScreen()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         confirmQuitGame.SetActive(true);
     }
     public void OnClick_TurnOffQuitScreen()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         confirmQuitGame.SetActive(false);
     }
     #endregion

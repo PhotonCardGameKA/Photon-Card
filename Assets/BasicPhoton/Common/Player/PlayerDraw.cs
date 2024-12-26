@@ -41,7 +41,7 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
 
     public void DrawLocal()
     {
-
+        SoundManager.Instance.PlaySound("DrawCard");
         GameObject cardToDraw = Instantiate(cardPrefab);
         cardToDraw.transform.SetParent(playerArea.yourHandPrefab.transform, false);
         //set info to card draw
@@ -49,7 +49,7 @@ public class PlayerDraw : MonoBehaviourPunCallbacks
         cardToDraw.GetComponentInChildren<PhotonCardProp>().SetProp(cardInfo);
         cardToDraw.GetComponent<PhotonCardCtrl>().cardInfo = cardInfo;
         cardToDraw.GetComponentInChildren<PhotonCardUI>().InitUI();
-
+        UpdateListHolder();
         //if maxcard
         if (playerArea.cardholder.Count == maxCardInHand)
         {

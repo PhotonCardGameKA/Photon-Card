@@ -83,7 +83,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         base.OnMasterClientSwitched(newMasterClient);
-        _roomCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClick_LeaveRoom();
+        AnNotification.Instance.CustomMessage("YOU are new host of this room");
+        // _roomCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClick_LeaveRoom();
     }
 
 
@@ -103,6 +104,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     public void OnClick_StartGame()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         if (!PhotonNetwork.IsMasterClient)
         {
             AnNotification.Instance.CustomMessage("YOU ARE NOT MASTERCLIENT");
@@ -135,6 +137,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     public void OnClick_ReadyUp()
     {
+        SoundManager.Instance.PlaySound("UIClick");
 
         if (!PhotonNetwork.IsMasterClient)
         {

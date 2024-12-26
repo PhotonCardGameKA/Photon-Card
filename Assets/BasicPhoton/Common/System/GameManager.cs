@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         PhotonNetwork.LeaveRoom();
     }
     //scale for more than 2 player
@@ -120,8 +121,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P1.ViewID);
                 photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P2.ViewID);
             }
-            if (P1.IsMine) photonView.RPC(nameof(this.DrawNetwork), RpcTarget.Others, P1.ViewID);
-            else photonView.RPC(nameof(this.DrawNetwork), RpcTarget.Others, P2.ViewID);
+            if (P1.IsMine) photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P1.ViewID);
+            else photonView.RPC(nameof(this.DrawNetwork), RpcTarget.All, P2.ViewID);
         }//chu phong di truoc thi duoc them 1 la
 
 
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DrawNetwork(int pvId)
     {
+        // SoundManager.Instance.PlaySound("DrawCard");
         PhotonView pvTemp = PhotonView.Find(pvId);
         if (pvTemp.IsMine)
         {
@@ -142,18 +144,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public void OnClickTurnOnSetting()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         settingScreen.SetActive(true);
     }
     public void OnClickTurnOffSetting()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         settingScreen.SetActive(false);
     }
     public void OnClickTurnOnLeaveGame()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         confirmLeaveGame.SetActive(true);
     }
     public void OnClickTurnOffLeaveGame()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         confirmLeaveGame.SetActive(false);
     }
     public void ActivePreventerCreature(bool state)
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
+        if (WinCondition.Instance.isLose && !WinCondition.Instance.isWin) return;
         AnNotification.Instance.CustomMessage("Your OP Disconnected");
         WinCondition.Instance.WinProcess();
     }

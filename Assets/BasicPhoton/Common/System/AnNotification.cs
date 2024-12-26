@@ -22,6 +22,7 @@ public class AnNotification : MonoBehaviour
     public void CustomMessage(string msg)
     {
         notificationText.text = msg;
+        SoundManager.Instance.PlaySound("Notification");
         StartCoroutine(FadeInOut());
 
     }

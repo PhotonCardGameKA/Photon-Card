@@ -44,7 +44,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-
+        boardCtrl.UpdateListCreature();
         if (!boardCtrl.turnManager.isMyTurn)
         {
             AnNotification.Instance.CustomMessage("Not Your Turn");
@@ -69,6 +69,7 @@ public class DropZone : MonoBehaviour, IDropHandler
                 return; // du mana hay ko
 
             }
+            SoundManager.Instance.PlaySound("CreatureSummoned");
             TimerManager.Instance.isStop = true;
             TimerManager.Instance.BonusTime();
             playerController.playerMana.UseMana(manaCost);

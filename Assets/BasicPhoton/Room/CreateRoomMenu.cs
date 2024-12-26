@@ -15,15 +15,26 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
         roomCanvases = canvases;
     }
-
+    [SerializeField] int maxRoomAllow = 1;
+    int CurrentRoomCount;
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        CurrentRoomCount = roomList.Count;
+    }
     public void OnClick_CreateRoom()
     {
+        SoundManager.Instance.PlaySound("UIClick");
         if (!PhotonNetwork.IsConnected)
         {
             AnNotification.Instance.CustomMessage("NOT CONNECTED TO SERVER");
             return;
         }
-
+        // PhotonNetwork.r
+        if (CurrentRoomCount >= maxRoomAllow)
+        {
+            AnNotification.Instance.CustomMessage("CANNOT CREATE MORE ROOMS, PLEASE WAIT FOR OTHERS PLAYERS TO LEAVE");
+            return;
+        }
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
         roomOptions.BroadcastPropsChangeToAll = true;

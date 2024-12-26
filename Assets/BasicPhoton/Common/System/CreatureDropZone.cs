@@ -59,51 +59,136 @@ public class CreatureDropZone : MonoBehaviour, IDropHandler
     {
         GameManager.Instance.ActivePreventerCreature(true);
         TimerManager.Instance.BonusTime();
+
         DOVirtual.DelayedCall(0.05f, () =>
-   {
-       ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
-       if (arrow != null)
-       {
-           arrow.canDrag = false;
-           arrow.gameObject.SetActive(false);
-       }
+        {
+            ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
+            if (arrow != null)
+            {
+                arrow.canDrag = false;
+                arrow.gameObject.SetActive(false);
+            }
 
-       Vector3 originalPosition = attackingCreature.position;
-       Vector3 targetPosition = transform.position;
+            Vector3 originalPosition = attackingCreature.position;
+            Vector3 targetPosition = transform.position;
 
-       float animationDuration = 0.5f;
-
-
-       attackingCreature.DOMove(targetPosition, animationDuration)
-           .SetEase(Ease.InOutQuad)
-           .OnComplete(() =>
-           {
-               CreatureAnimRef animRef = attackingCreature.GetComponent<CreatureAnimRef>();
-               animRef.attack1Anim.SetActive(true);
-               animRef.attack2Anim.SetActive(true);
-               DOVirtual.DelayedCall(0.2f, () =>
-               {
-                   attackingCreature.DOMove(originalPosition, animationDuration)
-                       .SetEase(Ease.InOutQuad)
-                       .OnComplete(() =>
-                       {
-                           DOVirtual.DelayedCall(0.05f, () =>
-                           {
-                               Debug.Log("Damage dealt to enemy!");
-                               BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
+            float animationDuration = 0.5f;
 
 
-                               if (arrow != null && !arrow.gameObject.activeSelf)
-                               {
-                                   arrow.gameObject.SetActive(true);
-                               }
-                               animRef.attack1Anim.SetActive(false);
-                               animRef.attack2Anim.SetActive(false);
-                               GameManager.Instance.ActivePreventerCreature(false);
-                           });
-                       });
-               });
-           });
-   });
-    }//loi mang chan
+            Vector3 retreatPosition = originalPosition - attackingCreature.forward * 1.5f;
+
+            attackingCreature.DOMove(retreatPosition, animationDuration * 0.25f)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+
+                    attackingCreature.DOMove(targetPosition, animationDuration)
+                        .SetEase(Ease.InQuad)
+                        .OnComplete(() =>
+                        {
+                            CreatureAnimRef animRef = transform.GetComponent<CreatureAnimRef>();
+                            if (animRef == null)
+                            {
+                                animRef = transform.GetComponentInParent<CreatureAnimRef>();
+                            }
+
+                            animRef.attack1Anim.SetActive(true);
+                            animRef.attack2Anim.SetActive(true);
+                            SoundManager.Instance.PlaySound("SwordAttack");
+
+
+                            Transform targetCreature = transform;
+                            Vector3 originalScale = targetCreature.localScale;
+                            targetCreature.DOScale(originalScale * 1.2f, animationDuration * 0.2f)
+                                .SetEase(Ease.OutBounce)
+                                .OnComplete(() =>
+                                {
+                                    targetCreature.DOScale(originalScale, animationDuration * 0.2f)
+                                        .SetEase(Ease.InBounce);
+                                });
+
+
+                            DOVirtual.DelayedCall(0.2f, () =>
+                            {
+                                attackingCreature.DOMove(originalPosition, animationDuration)
+                                    .SetEase(Ease.OutQuad)
+                                    .OnComplete(() =>
+                                    {
+                                        DOVirtual.DelayedCall(0.05f, () =>
+                                        {
+                                            Debug.Log("Damage dealt to enemy!");
+                                            BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
+
+                                            if (arrow != null && !arrow.gameObject.activeSelf)
+                                            {
+                                                arrow.gameObject.SetActive(true);
+                                            }
+
+                                            animRef.attack1Anim.SetActive(false);
+                                            animRef.attack2Anim.SetActive(false);
+                                            GameManager.Instance.ActivePreventerCreature(false);
+                                        });
+                                    });
+                            });
+                        });
+                });
+        });
+    }
+
+    //     public void AttackAnimation(Transform attackingCreature)
+    //     {
+    //         GameManager.Instance.ActivePreventerCreature(true);
+    //         TimerManager.Instance.BonusTime();
+    //         DOVirtual.DelayedCall(0.05f, () =>
+    //    {
+    //        ArrowDragDrop arrow = attackingCreature.GetComponentInChildren<ArrowDragDrop>();
+    //        if (arrow != null)
+    //        {
+    //            arrow.canDrag = false;
+    //            arrow.gameObject.SetActive(false);
+    //        }
+
+    //        Vector3 originalPosition = attackingCreature.position;
+    //        Vector3 targetPosition = transform.position;
+
+    //        float animationDuration = 0.5f;
+
+
+    //        attackingCreature.DOMove(targetPosition, animationDuration)
+    //            .SetEase(Ease.InOutQuad)
+    //            .OnComplete(() =>
+    //            {
+    //                CreatureAnimRef animRef = transform.GetComponent<CreatureAnimRef>();//anim tan cong phai ton tai o quai bi danh moi dung
+    //                if (animRef == null)
+    //                {
+    //                    animRef = transform.GetComponentInParent<CreatureAnimRef>();//quai minh bi danh de anim o obj con
+    //                }
+    //                animRef.attack1Anim.SetActive(true);
+    //                animRef.attack2Anim.SetActive(true);
+    //                SoundManager.Instance.PlaySound("SwordAttack");
+    //                DOVirtual.DelayedCall(0.2f, () =>
+    //                {
+    //                    attackingCreature.DOMove(originalPosition, animationDuration)
+    //                        .SetEase(Ease.InOutQuad)
+    //                        .OnComplete(() =>
+    //                        {
+    //                            DOVirtual.DelayedCall(0.05f, () =>
+    //                            {
+    //                                Debug.Log("Damage dealt to enemy!");
+    //                                BothTakeDamage(attackingCreature.GetComponent<CreatureCtrl>(), this.creatureCtrl);
+
+
+    //                                if (arrow != null && !arrow.gameObject.activeSelf)
+    //                                {
+    //                                    arrow.gameObject.SetActive(true);
+    //                                }
+    //                                animRef.attack1Anim.SetActive(false);
+    //                                animRef.attack2Anim.SetActive(false);
+    //                                GameManager.Instance.ActivePreventerCreature(false);
+    //                            });
+    //                        });
+    //                });
+    //            });
+    //    });
+    //     }//loi mang chan
 }

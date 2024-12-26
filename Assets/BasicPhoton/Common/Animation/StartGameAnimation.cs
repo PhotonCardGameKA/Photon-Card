@@ -53,6 +53,7 @@ public class StartGameAnimation : MonoBehaviour
 
     private void PlayStartAnimation()
     {
+        SoundManager.Instance.PlaySound("BgIngame");
         TimerManager.Instance.isStop = true;
         playerBanner.DOAnchorPos(new Vector2(0, -Screen.height / 6), slideDuration)
             .SetEase(Ease.OutQuad);

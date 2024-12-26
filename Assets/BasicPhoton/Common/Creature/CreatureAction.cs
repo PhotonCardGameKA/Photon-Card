@@ -27,6 +27,7 @@ public class CreatureAction : MonoBehaviour
     protected virtual void Death()//temp
     {
         CanvasGroup canvasGroup = transform.parent.gameObject.GetComponent<CanvasGroup>();
+        SoundManager.Instance.PlaySound("CreatureDeath");
         if (canvasGroup != null)
         {
             canvasGroup.DOFade(0f, 1f)

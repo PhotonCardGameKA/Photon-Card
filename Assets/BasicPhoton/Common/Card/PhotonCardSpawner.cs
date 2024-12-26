@@ -14,6 +14,7 @@ public class PhotonCardSpawner : MonoBehaviourPun//spam in enemy side
     }
     public void EnemyCardUISide()
     {
+        SoundManager.Instance.PlaySound("DrawCard");
         GameObject card = Instantiate(cardPrefab, transform);
         card.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         card.GetComponentInChildren<PhotonCardUI>().UnHideCardBack();

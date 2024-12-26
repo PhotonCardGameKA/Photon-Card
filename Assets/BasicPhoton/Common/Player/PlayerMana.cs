@@ -13,7 +13,7 @@ public class PlayerMana : MonoBehaviour
     public GameObject pipPrefab;
     public void AddPip()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             int childCount = 0;
 
@@ -30,6 +30,7 @@ public class PlayerMana : MonoBehaviour
     }
     public void UsePip()
     {
+        SoundManager.Instance.PlaySound("ManaPip");
         if (this.currentMana < maxMana) currentMana += 1;
         else currentMana = maxMana;
 
@@ -38,9 +39,13 @@ public class PlayerMana : MonoBehaviour
     }
     private void Awake()
     {
+        LoadCtrl();
+        AddPip();
+    }
+    public void LoadCtrl()
+    {
         if (this.playerController != null) return;
         this.playerController = GetComponentInParent<PlayerController>();
-        AddPip();
     }
     public void UnlockMana(int amount)
     {
