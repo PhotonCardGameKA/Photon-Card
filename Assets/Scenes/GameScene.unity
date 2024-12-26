@@ -9957,6 +9957,7 @@ MonoBehaviour:
   enemyCardInHand: {fileID: 0}
   cardPrefab: {fileID: 7677954462705160159, guid: 796bbce7be1eb4a478c8ecede5ecb60a, type: 3}
   poolCard: []
+  poolHolder: {fileID: 361190905}
 --- !u!114 &8718047589428539619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9971,7 +9972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardHolder: []
   maxCardInHand: 7
-  photonCardSpawner: {fileID: 0}
+  photonCardSpawner: {fileID: 8718047589428539618}
 --- !u!222 &8782292181455520368
 CanvasRenderer:
   m_ObjectHideFlags: 0
