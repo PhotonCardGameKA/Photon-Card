@@ -37,7 +37,7 @@ public class LobbyManager : MonoBehaviour
     IEnumerator CheckScreen()
     {
         int countTimeTemp = 0;
-        while (!PhotonNetwork.InLobby)
+        while (!PhotonNetwork.IsConnected)
         {
             yield return new WaitForSeconds(1f);
             countTimeTemp++;
