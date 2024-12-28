@@ -1,5 +1,6 @@
 using System.Collections;
 using Photon.Pun;
+using PlayFab;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -136,6 +137,30 @@ public class LobbyManager : MonoBehaviour
     {
         SoundManager.Instance.PlaySound("UIClick");
         confirmQuitGame.SetActive(false);
+    }
+    public void OnClick_LogOut()
+    {
+        PlayFabClientAPI.ForgetAllCredentials();
+        PlayerPrefs.DeleteKey("Username");
+        PlayerPrefs.DeleteKey("Password");
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+
+        }
+        if (PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby();
+        }
+        PhotonNetwork.Disconnect();
+        // StartCoroutine(FadeOut());
+        PhotonNetwork.LoadLevel(2);
+    }
+    bool isMute = false;
+    public void OnClickMute()
+    {
+        isMute = !isMute;
+        AudioListener.volume = isMute ? 0 : 1;
     }
     #endregion
 }

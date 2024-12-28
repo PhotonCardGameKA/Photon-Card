@@ -27,11 +27,18 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource fxAudioSource;
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Debug.Log("duplicate sfx", gameObject);
+            Instance = this;
         }
-        Instance = this;
+        else if (Instance != null)
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        // Instance = this;
         DontDestroyOnLoad(gameObject);
     }
     bool isMute = false;
@@ -43,7 +50,9 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         bgAudioSource = bgSoundHolder.GetComponent<AudioSource>();
+        bgAudioSource.volume = 0.5f;
         fxAudioSource = fxSoundHolder.GetComponent<AudioSource>();
+        fxAudioSource.volume = 0.5f;
     }
     public void PlayBackgroundSound(AudioClip clip)
     {
