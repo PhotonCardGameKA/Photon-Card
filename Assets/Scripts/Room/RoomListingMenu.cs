@@ -24,6 +24,10 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (RoomInfo room in roomList)
         {
+            if (room.CustomProperties.ContainsKey(MatchMaking.ELO_RANGE))
+            {
+                continue;
+            }
             if (room.RemovedFromList)
             {
                 int index = _listing.FindIndex(x => x.RoomInfo.Name == room.Name);
@@ -41,6 +45,7 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
                     RoomListing listing = Instantiate(_roomListing, _content);
                     if (listing != null)
                     {
+                        // if(listing.)
                         listing.SetRoomInfo(room);
                         _listing.Add(listing);
                     }

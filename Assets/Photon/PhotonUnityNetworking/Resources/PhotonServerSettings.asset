@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 86440b64-1910-4885-8b8a-fddc4e7a9703
     AppIdFusion: 
-    AppIdChat: 
+    AppIdChat: 8caf1fbf-6a14-427e-be75-2391f9b375fa
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -66,5 +66,5 @@ MonoBehaviour:
   - RPC_SyncOp
   - DrawNetwork
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

@@ -45,10 +45,23 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.JoinOrCreateRoom(_roomName.text, roomOptions, TypedLobby.Default);
     }
+    public const string ELO_RANGE = "Elo_range";
     public override void OnCreatedRoom()
     {
-        Debug.Log("created room successfull", this);
-        roomCanvases.CurrentRoomCanvas.Show();
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(ELO_RANGE))
+        {
+            roomCanvases.CurrentRoomCanvas.Hide();
+        }
+        else
+        {
+            Debug.Log("created room successfull", this);
+            roomCanvases.CurrentRoomCanvas.Show();
+        }
+
+    }
+    public override void OnLeftRoom()
+    {
+        roomCanvases.CurrentRoomCanvas.Hide();
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {

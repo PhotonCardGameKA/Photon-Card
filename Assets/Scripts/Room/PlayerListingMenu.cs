@@ -88,10 +88,20 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
 
 
-
+    public const string ELO_RANGE = "Elo_range";
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         AddPlayerListing(newPlayer);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(ELO_RANGE))
+            {
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                PhotonNetwork.LoadLevel(2);
+            }
+        }
+
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -132,7 +142,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel(2);
         }//hide room while game starting 
     }
     public void OnClick_ReadyUp()

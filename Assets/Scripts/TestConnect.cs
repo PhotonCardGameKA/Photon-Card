@@ -14,9 +14,11 @@ public class TestConnect : MonoBehaviourPunCallbacks
         PhotonNetwork.SendRate = 40;
         #endregion
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.NickName = MasterManager.Instance.GameSettings.NickName;
+        // PhotonNetwork.NickName = MasterManager.Instance.GameSettings.NickName;
+        PhotonNetwork.NickName = PlayerPrefs.GetString("USERNAME");
         PhotonNetwork.GameVersion = MasterManager.Instance.GameSettings.GameVersion;
-        PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+            PhotonNetwork.ConnectUsingSettings();
         connectStatus.text = PhotonNetwork.NetworkClientState.ToString();
     }
     void Update()
