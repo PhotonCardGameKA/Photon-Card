@@ -79,7 +79,22 @@ public class WinCondition : MonoBehaviour
         isLose = false;
         TimerManager.Instance.isStop = true;
         TurnWinScreenOn();
+        AddElo();
 
+    }
+    public void AddElo()
+    {
+        PlayFabStats.Instance.GetStats();
+        PlayFabStats.Instance.playerElo += 30;
+        PlayFabStats.Instance.StartCloudUpdatePlayerStats();
+        PlayFabStats.Instance.GetStats();
+    }
+    public void DeductElo()
+    {
+        PlayFabStats.Instance.GetStats();
+        PlayFabStats.Instance.playerElo -= 30;
+        PlayFabStats.Instance.StartCloudUpdatePlayerStats();
+        PlayFabStats.Instance.GetStats();
     }
     public void LoseProcess()
     {
@@ -87,5 +102,6 @@ public class WinCondition : MonoBehaviour
         isLose = true;
         TimerManager.Instance.isStop = true;
         TurnLoseScreenOn();
+        DeductElo();
     }
 }

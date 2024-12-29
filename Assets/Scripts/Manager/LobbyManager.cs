@@ -1,6 +1,7 @@
 using System.Collections;
 using Photon.Pun;
 using PlayFab;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,17 @@ public class LobbyManager : MonoBehaviour
     public GameObject forceQuitImg;
     void Awake()
     {
+        SetProfile();
         if (Instance != null)
         {
             Debug.Log("Duplicate");
         }
         Instance = this;
         SoundManager.Instance.PlaySound("BgLobby");
+        OnClick_TurnOnSettingScreen();
+        OnClick_TurnOffSettingScreen();
         StartCoroutine(CheckScreen());
+
     }
     public void forceQuitOn()
     {
@@ -51,7 +56,7 @@ public class LobbyManager : MonoBehaviour
         }
         StartCoroutine(FadeOut());
         // Invoke(nameof(this.TurnOffLoadingScreen), 1f);
-
+        SetProfile();
     }
     void TurnOnLoadingScreen()
     {
@@ -109,6 +114,16 @@ public class LobbyManager : MonoBehaviour
     {
         PhotonNetwork.LocalPlayer.NickName = text.text;
     }
+    #region Profile
+    public TextMeshProUGUI playerName;
+    public TextMeshProUGUI playerElo;
+    public void SetProfile()
+    {
+        playerName.text = "Name: " + PlayerPrefs.GetString("USERNAME");
+        PlayFabStats.Instance.GetStats();
+        playerElo.text = "Elo: " + PlayFabStats.Instance.playerElo;
+    }
+    #endregion
     #region Setting
     [Header("Setting")]
     public GameObject SettingScreen;
@@ -125,6 +140,8 @@ public class LobbyManager : MonoBehaviour
     public void OnClick_QuitGame()
     {
         SoundManager.Instance.PlaySound("UIClick");
+        PlayerPrefs.DeleteKey("USERNAME");
+        PlayerPrefs.DeleteKey("Elo");
         Application.Quit();
     }
     public GameObject confirmQuitGame;
@@ -141,7 +158,8 @@ public class LobbyManager : MonoBehaviour
     public void OnClick_LogOut()
     {
         PlayFabClientAPI.ForgetAllCredentials();
-        PlayerPrefs.DeleteKey("Username");
+        PlayerPrefs.DeleteKey("USERNAME");
+        PlayerPrefs.DeleteKey("Elo");
         PlayerPrefs.DeleteKey("Password");
         if (PhotonNetwork.InRoom)
         {
@@ -154,7 +172,7 @@ public class LobbyManager : MonoBehaviour
         }
         PhotonNetwork.Disconnect();
         // StartCoroutine(FadeOut());
-        PhotonNetwork.LoadLevel(2);
+        PhotonNetwork.LoadLevel(0);
     }
     bool isMute = false;
     public void OnClickMute()

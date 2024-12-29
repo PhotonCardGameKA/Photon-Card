@@ -5,10 +5,13 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
-using PlayFab.PfEditor.EditorModels;
+// using PlayFab.PfEditor.EditorModels;
 using Photon.Pun;
+// using PlayFab.PfEditor.Json;
+// using PlayFab.PfEditor.Json;
 public class PlayFabAuth : MonoBehaviour
 {
+    // public static PlayFabAuth Instance;
     LoginWithPlayFabRequest loginRequest;
     public InputField user;
     public InputField pass;
@@ -16,6 +19,21 @@ public class PlayFabAuth : MonoBehaviour
     public GameObject turnOnRegister;
     public GameObject backToLogin;
     public bool IsAuthenticated = false;
+    private void Awake()
+    {
+        // if (PlayFabAuth.Instance == null)
+        // {
+        //     PlayFabAuth.Instance = this;
+        // }
+        // else
+        // {
+        //     if (PlayFabAuth.Instance != this)
+        //     {
+        //         Destroy(this.gameObject);
+        //     }
+        // }
+        // DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         StartCoroutine(FadeOut());
@@ -26,6 +44,7 @@ public class PlayFabAuth : MonoBehaviour
     {
 
     }
+    #region login
     public void Login()
     {
         SoundManager.Instance.PlaySound("UIClick");
@@ -49,7 +68,9 @@ public class PlayFabAuth : MonoBehaviour
             AnNotification.Instance.CustomMessage("LoginSuccess");
             Debug.Log("PlayFabId:" + result.PlayFabId);
             Debug.Log("SessionTicket:" + result.SessionTicket);
-            PhotonNetwork.LoadLevel(0);
+            PlayFabStats.Instance.GetStats();
+            PlayerPrefs.SetString("USERNAME", user.text);
+            PhotonNetwork.LoadLevel(1);
 
         }, error =>
         {
@@ -89,6 +110,7 @@ public class PlayFabAuth : MonoBehaviour
             AnNotification.Instance.CustomMessage(error.ErrorMessage);
         }, null);
     }
+    #endregion
     #region recovery
     public InputField recoveryEmail;
     public GameObject recoveryPannel;
@@ -174,6 +196,64 @@ public class PlayFabAuth : MonoBehaviour
     public void OnClick_OpenQuit()
     {
         confirmQuitScreen.SetActive(true);
+    }
+    #endregion
+    #region PlayerStats
+    public int playerElo;
+    public void SetStats()
+    {
+        UpdatePlayerStatisticsRequest request = new UpdatePlayerStatisticsRequest();
+        request.Statistics = new List<StatisticUpdate>{
+            new StatisticUpdate{
+                StatisticName = "Elo", Value = playerElo
+            },
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request,
+        result =>
+        {
+            Debug.Log("User statistics updated");
+        }, error =>
+        {
+            AnNotification.Instance.CustomMessage("Updated stats failed");
+        });
+    }
+    public void GetStats()
+    {
+        PlayFabClientAPI.GetPlayerStatistics(
+            new GetPlayerStatisticsRequest(),
+            OnGetStats,
+            error =>
+            {
+                AnNotification.Instance.CustomMessage("Get stats failed");
+            }
+        );
+    }
+    void OnGetStats(GetPlayerStatisticsResult result)
+    {
+        foreach (var eachStat in result.Statistics)
+        {
+            switch (eachStat.StatisticName)
+            {
+                case "Elo":
+                    playerElo = eachStat.Value;
+                    PlayerPrefs.SetInt("Elo", playerElo);
+                    break;
+            }
+        }
+    }
+    public void StartCloudUpdatePlayerStats()
+    {
+        ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest();
+        request.FunctionName = "updatePlayerStats";
+        request.FunctionParameter = new { Elo = playerElo };
+        PlayFabClientAPI.ExecuteCloudScript(request, result =>
+        {
+
+        },
+        error =>
+        {
+            Debug.LogWarning(error.GenerateErrorReport());
+        });
     }
     #endregion
 }

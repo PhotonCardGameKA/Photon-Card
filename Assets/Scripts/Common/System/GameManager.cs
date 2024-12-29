@@ -70,10 +70,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        PhotonNetwork.LoadLevel(1);
     }
 
     public void LeaveRoom()
+    {
+        SoundManager.Instance.PlaySound("UIClick");
+        if (WinCondition.Instance.isWin == false && WinCondition.Instance.isLose == false)
+        {
+            WinCondition.Instance.DeductElo();
+        }
+        PhotonNetwork.LeaveRoom();
+    }
+    public void OnClick_LeaveRoom()
     {
         SoundManager.Instance.PlaySound("UIClick");
         PhotonNetwork.LeaveRoom();
@@ -176,6 +185,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         base.OnPlayerLeftRoom(otherPlayer);
         if (WinCondition.Instance.isLose && !WinCondition.Instance.isWin) return;
+        if (WinCondition.Instance.isWin && !WinCondition.Instance.isLose) return;
         AnNotification.Instance.CustomMessage("Your OP Disconnected");
         WinCondition.Instance.WinProcess();
     }
