@@ -9,6 +9,7 @@ public class PhotonCardSpawner : MonoBehaviourPun//spam in enemy side
     public GameObject cardPrefab;
     public List<GameObject> poolCard;
     public GameObject poolHolder;
+    int cardDraw = 0;
     void Awake()
     {
         if (cardPrefab == null) Debug.LogError("Lack of card prefab");
@@ -17,7 +18,10 @@ public class PhotonCardSpawner : MonoBehaviourPun//spam in enemy side
     public void EnemyCardUISide()
     {
         SoundManager.Instance.PlaySound("DrawCard");
+        cardDraw++;
+        if (cardDraw > 30) return;
         GameObject card = TakeFromPool();
+
         if (card == null)
         {
             card = Instantiate(cardPrefab, transform);
@@ -26,6 +30,7 @@ public class PhotonCardSpawner : MonoBehaviourPun//spam in enemy side
         card.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         card.GetComponentInChildren<PhotonCardUI>().UnHideCardBack();
         Destroy(card.GetComponent<DragDrop>());
+
         enemyCardInHand.UpdateList();
     }
     public void ReturnToPool(GameObject cardToPool)

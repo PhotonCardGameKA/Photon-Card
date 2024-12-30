@@ -40,7 +40,10 @@ public class PlayerDeck : MonoBehaviour
     }
     public CardInfo Draw()
     {
+
+        if (deck.Count == 0) return null;
         CardInfo res = deck[0];
+        // if (res == null) return null;
         deck.RemoveAt(0);
         this.currentCard--;
         this.playerController.playerDeckUICtrl.DrawUI();
