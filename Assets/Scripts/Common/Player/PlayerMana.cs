@@ -30,6 +30,7 @@ public class PlayerMana : MonoBehaviour
     }
     public void UsePip()
     {
+        if (!playerController.endTurnButton.isMyTurn) return;
         SoundManager.Instance.PlaySound("ManaPip");
         if (this.currentMana < maxMana) currentMana += 1;
         else currentMana = maxMana;

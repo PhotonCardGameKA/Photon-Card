@@ -742,6 +742,8 @@ MonoBehaviour:
   playerController: {fileID: 6601939946894920960}
   cardPrefab: {fileID: 7677954462705160159, guid: 796bbce7be1eb4a478c8ecede5ecb60a, type: 3}
   playerArea: {fileID: 4073326154220227362}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &4633930964458387434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,6 +979,7 @@ MonoBehaviour:
   playerDeckUICtrl: {fileID: 4965248466767192002}
   playerMana: {fileID: 506650885002190560}
   playerManaUI: {fileID: 8193585579693650168}
+  endTurnButton: {fileID: 0}
 --- !u!114 &1185911101400187939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,6 +2023,10 @@ PrefabInstance:
     - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
       propertyPath: m_Name
       value: DeckUni
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566405840580321742, guid: 0e13744f097ad7b45907705cd33c0d65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

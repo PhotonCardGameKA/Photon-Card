@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public PlayerDeckUICtrl playerDeckUICtrl;
     public PlayerMana playerMana;
     public PlayerManaUI playerManaUI;
+    public SystemTurnManager endTurnButton;
     private void Awake()
     {
         this.LoadComponents();
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         this.LoadHandArea();
         this.LoadPlayerDeck();
         this.LoadDeckUICtrl();
+        this.LoadTurnManager();
     }
     private void LoadPlayerDraw()
     {
@@ -58,5 +60,12 @@ public class PlayerController : MonoBehaviour
     {
         if (this.playerManaUI != null) return;
         this.playerManaUI = transform.GetComponentInChildren<PlayerManaUI>();
+    }
+    private void LoadTurnManager()
+    {
+        if (this.endTurnButton == null)
+        {
+            this.endTurnButton = GameObject.Find("EndTurnButton").GetComponent<SystemTurnManager>();
+        }
     }
 }

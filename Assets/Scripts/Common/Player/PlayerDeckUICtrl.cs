@@ -26,7 +26,11 @@ public class PlayerDeckUICtrl : MonoBehaviour
     public void DrawUI()
     {
         GameObject topDeck = FindTopCard();
-        if (topDeck == null) Debug.LogError("Out of cards");
+        if (topDeck == null)
+        {
+            Debug.LogError("Out of cards");
+            return;
+        }
         StartCoroutine(DrawAnimation(topDeck.GetComponent<RectTransform>(), topDeck));
         // topDeck.SetActive(false);
     }
